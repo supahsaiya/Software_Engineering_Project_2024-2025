@@ -1,8 +1,8 @@
-# System Documentation
+#System Documentation
 
 This folder contains all system analysis and design artifacts for the project. It serves as a central location for both technical and functional documentation, covering all development stages from early requirements to UI mockups.
 
-## Folder Structure
+#Folder Structure
 
 - **/use-cases**  
   Detailed descriptions of all system use cases and their main/alternative flows.
