@@ -16,6 +16,9 @@ This folder contains all system analysis and design artifacts for the project. I
 - **/mockups**  
   Early-stage mockup screens illustrating main UI views and interactions.
 
+- **/reports**  
+  PDF file of each report we have submitted.
+
 ---
 
 All diagrams are stored in both `.drawio` and `.png` formats for ease of editing and viewing.
