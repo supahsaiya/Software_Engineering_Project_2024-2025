@@ -1,49 +1,133 @@
 package com.example.where2park.ui;
 
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
-public class ConfirmLocationScreen {
 
-    private String location; // stored location
-    private Scanner scanner = new Scanner(System.in);
 
-    public void setLocation(String location) {
-        this.location = location;
+public class ConfirmLocationScreen extends Application {
+
+    private static String location = "Unknown";  // static to share with start()
+
+    public static void setLocation(String loc) {
+        location = loc;
     }
 
-    // Ask user if the detected location is correct
-    public void sendConfirmLocation(String location) {
-        System.out.println("Is this your location? " + location + " (y/n)");
+    public static void display(String loc) {
+        setLocation(loc);
+        launch();  // Calls start() eventually
     }
 
-    public void display() {
-        System.out.println("Displaying confirm location screen...");
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Confirm Location");
+
+        Label locationLabel = new Label("Is this your location?\n" + location);
+
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        /*
+        // For now, hardcode the map location — later you can geocode this
+        String mapUrl = "https://www.openstreetmap.org/#map=15/37.9838/23.7275";
+        webEngine.load(mapUrl);
+        */
+
+        double[] coords = geocodeLocation(location);
+        String mapUrl = "https://www.openstreetmap.org/?mlat=" + coords[0] + "&mlon=" + coords[1] + "#map=15/" + coords[0] + "/" + coords[1];
+        webEngine.load(mapUrl);
+
+
+        Button confirmBtn = new Button("Confirm");
+        confirmBtn.setOnAction(e -> {
+            System.out.println("Location confirmed!");
+            // TODO: save location logic here
+            primaryStage.close();
+        });
+
+        Button rejectBtn = new Button("Reject");
+        rejectBtn.setOnAction(e -> {
+            System.out.println("Location rejected by user.");
+            // TODO: open manual input screen here
+            primaryStage.close();
+        });
+
+
+
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(20));
+        layout.getChildren().addAll(webView, locationLabel, confirmBtn, rejectBtn);
+
+        Scene scene = new Scene(layout, 800, 600);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
+/// TEMPORARY GEOCODING METHOD
+    private double[] geocodeLocation(String location) {
+        try {
+            String encodedLocation = java.net.URLEncoder.encode(location, "UTF-8");
+            String urlStr = "https://nominatim.openstreetmap.org/search?q=" + encodedLocation + "&format=json&limit=1";
 
-    // User confirms location
-    public void confirm() {
-        System.out.println("Location confirmed!");
-        // Additional save logic here
-    }
+            java.net.URL url = new java.net.URL(urlStr);
+            java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
+            conn.setRequestProperty("User-Agent", "Where2ParkApp/1.0"); // required by Nominatim
 
-    // User rejects location
-    public void rejectLocation() {
-        System.out.println("Location rejected by user.");
-        // Additional logic to show input screen for manual address
-    }
+            java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
 
-    // New method to ask user and handle input
-    public void askUserConfirmation() {
-        sendConfirmLocation(location);
-        String input = scanner.nextLine().trim().toLowerCase();
+            /*
+            // Parse JSON (simple way without library)
+            String json = response.toString();
+            if (json.startsWith("[")) {
+                int latIndex = json.indexOf("\"lat\":\"") + 7;
+                int lonIndex = json.indexOf("\"lon\":\"") + 7;
+                double lat = Double.parseDouble(json.substring(latIndex, json.indexOf("\"", latIndex)));
+                double lon = Double.parseDouble(json.substring(lonIndex, json.indexOf("\"", lonIndex)));
+                return new double[]{lat, lon};
+            }
 
-        if (input.equals("y") || input.equals("yes")) {
-            confirm();
-        } else if (input.equals("n") || input.equals("no")) {
-            rejectLocation();
-        } else {
-            System.out.println("Invalid input. Please enter 'y' or 'n'.");
-            askUserConfirmation(); // ask again recursively until valid input
+             */
+            String json = response.toString();
+            if (json.startsWith("[") && json.length() > 10) {
+                int latIndex = json.indexOf("\"lat\":\"");
+                int lonIndex = json.indexOf("\"lon\":\"");
+
+                if (latIndex != -1 && lonIndex != -1) {
+                    latIndex += 7;
+                    lonIndex += 7;
+
+                    double lat = Double.parseDouble(json.substring(latIndex, json.indexOf("\"", latIndex)));
+                    double lon = Double.parseDouble(json.substring(lonIndex, json.indexOf("\"", lonIndex)));
+                    return new double[]{lat, lon};
+                } else {
+                    System.out.println("❌ Location not found in API response.");
+                }
+            } else {
+                System.out.println("❌ Empty or malformed response.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        // Default fallback (Athens)
+        return new double[]{37.9838, 23.7275};
+    }
+
+
+
+
+    // For standalone testing
+    public static void main(String[] args) {
+        display("Athens, Greece");
     }
 }

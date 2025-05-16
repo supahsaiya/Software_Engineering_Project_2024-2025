@@ -11,8 +11,8 @@ public class MainApp {
         String location = "Athens, Greece";
 
         // Call the methods
-        screen.display();
-        screen.sendConfirmLocation(location);
-        screen.confirm(); // or screen.rejectLocation();
+        //screen.display();
+        //screen.sendConfirmLocation(location);
+        //screen.confirm(); // or screen.rejectLocation();
     }
 }

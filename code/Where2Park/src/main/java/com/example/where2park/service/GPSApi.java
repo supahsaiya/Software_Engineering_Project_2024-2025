@@ -5,7 +5,7 @@ import java.util.Random;
 public class GPSApi {
 
     private static final String[] FAKE_LOCATIONS = {
-            "123 Main St, Athens",
+            "123 Aiolou St, Athens",
             "45 Ermou St, Athens",
             "9 Syntagma Square, Athens",
             "21 Patision Ave, Athens",
