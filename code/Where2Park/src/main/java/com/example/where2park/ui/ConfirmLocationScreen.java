@@ -15,19 +15,6 @@ import javafx.stage.Stage;
 
 public class ConfirmLocationScreen extends Application {
 
-    //private static String location = "Unknown";  // static to share with start()
-    /*
-    public static void setLocation(String loc) {
-        location = loc;
-    }
-    */
-
-    /*
-    public static void display(String loc) {
-        setLocation(loc);
-        launch();  // Calls start() eventually
-    }
-    */
 
     private static Location locationToConfirm;
 
@@ -47,17 +34,11 @@ public class ConfirmLocationScreen extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Confirm Location");
 
-        //Label locationLabel = new Label("Is this your location?\n" + location);
         Label locationLabel = new Label("Is this your location?\n" + locationToConfirm.toString());
 
 
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
-        /*
-        // For now, hardcode the map location — later you can geocode this
-        String mapUrl = "https://www.openstreetmap.org/#map=15/37.9838/23.7275";
-        webEngine.load(mapUrl);
-        */
 
         //double[] coords = geocodeLocation(location);
         double[] coords = geocodeLocation(locationToConfirm.getAddress());
@@ -113,18 +94,6 @@ public class ConfirmLocationScreen extends Application {
             }
             in.close();
 
-            /*
-            // Parse JSON (simple way without library)
-            String json = response.toString();
-            if (json.startsWith("[")) {
-                int latIndex = json.indexOf("\"lat\":\"") + 7;
-                int lonIndex = json.indexOf("\"lon\":\"") + 7;
-                double lat = Double.parseDouble(json.substring(latIndex, json.indexOf("\"", latIndex)));
-                double lon = Double.parseDouble(json.substring(lonIndex, json.indexOf("\"", lonIndex)));
-                return new double[]{lat, lon};
-            }
-
-             */
             String json = response.toString();
             if (json.startsWith("[") && json.length() > 10) {
                 int latIndex = json.indexOf("\"lat\":\"");
@@ -151,12 +120,4 @@ public class ConfirmLocationScreen extends Application {
     }
 
 
-
-/*
-    // For standalone testing
-    public static void main(String[] args) {
-        display("Athens, Greece");
-    }
-
- */
 }
