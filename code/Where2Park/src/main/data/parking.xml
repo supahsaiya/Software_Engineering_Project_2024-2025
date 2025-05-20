@@ -1,0 +1,53 @@
+<!-- data/parkings.xml -->
+<parkings>
+    <parking>
+        <name>OPEN24</name>
+        <lat>37.9879611</lat>
+        <lon>23.7215891</lon>
+    </parking>
+    <parking>
+        <name>Parking Σύνταγμα - AEGEAN </name>
+        <lat>37.97432601753858</lat>
+        <lon>23.734417200000003</lon>
+    </parking>
+    <parking>
+        <name>O Platanos</name>
+        <lat>37.973604232772665</lat>
+        <lon>23.732042536139478</lon>
+    </parking>
+    <parking>
+        <name>Metropark Parking</name>
+        <lat>37.97544794029203</lat>
+        <lon>23.731173500418656</lon>
+    </parking>
+    <parking>
+        <name>Plaka Parking</name>
+        <lat>37.97313906989284</lat>
+        <lon>23.730958923697454</lon>
+    </parking>
+    <parking>
+        <name>Parking Kostas</name>
+        <lat>37.97505890497992</lat>
+        <lon>23.72879169881342</lon>
+    </parking>
+    <parking>
+        <name>PARKING CHRISTOKOPIDOU</name>
+        <lat>37.977934334912945</lat>
+        <lon>23.723427280783635</lon>
+    </parking>
+    <parking>
+        <name>Plaka Old Town Parking</name>
+        <lat>37.973502742964406</lat>
+        <lon>23.729220852255757</lon>
+    </parking>
+    <parking>
+        <name>Tetris Parking</name>
+        <lat>37.97930435316541</lat>
+        <lon>23.725809082388857</lon>
+    </parking>
+    <parking>
+        <name>Parking Πλατείας Κοτζιά</name>
+        <lat>37.98130013637565</lat>
+        <lon>23.727997764944977</lon>
+    </parking>
+</parkings>

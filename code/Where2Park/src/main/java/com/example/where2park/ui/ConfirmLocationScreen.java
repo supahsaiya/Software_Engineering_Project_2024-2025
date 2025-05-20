@@ -1,5 +1,6 @@
 package com.example.where2park.ui;
 
+import com.example.where2park.model.Location;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -14,22 +15,41 @@ import javafx.stage.Stage;
 
 public class ConfirmLocationScreen extends Application {
 
-    private static String location = "Unknown";  // static to share with start()
-
+    //private static String location = "Unknown";  // static to share with start()
+    /*
     public static void setLocation(String loc) {
         location = loc;
     }
+    */
 
+    /*
     public static void display(String loc) {
         setLocation(loc);
         launch();  // Calls start() eventually
     }
+    */
+
+    private static Location locationToConfirm;
+
+    public static void display(Location location) {
+        locationToConfirm = location;
+        Application.launch(ConfirmLocationScreen.class);
+    }
+
+    private static Location confirmedLocation = null;
+
+    public static Location getConfirmedLocation() {
+        return confirmedLocation;
+    }
+
 
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Confirm Location");
 
-        Label locationLabel = new Label("Is this your location?\n" + location);
+        //Label locationLabel = new Label("Is this your location?\n" + location);
+        Label locationLabel = new Label("Is this your location?\n" + locationToConfirm.toString());
+
 
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
@@ -39,7 +59,9 @@ public class ConfirmLocationScreen extends Application {
         webEngine.load(mapUrl);
         */
 
-        double[] coords = geocodeLocation(location);
+        //double[] coords = geocodeLocation(location);
+        double[] coords = geocodeLocation(locationToConfirm.getAddress());
+
         String mapUrl = "https://www.openstreetmap.org/?mlat=" + coords[0] + "&mlon=" + coords[1] + "#map=15/" + coords[0] + "/" + coords[1];
         webEngine.load(mapUrl);
 
@@ -47,7 +69,10 @@ public class ConfirmLocationScreen extends Application {
         Button confirmBtn = new Button("Confirm");
         confirmBtn.setOnAction(e -> {
             System.out.println("Location confirmed!");
+
+
             // TODO: save location logic here
+            confirmedLocation = locationToConfirm;
             primaryStage.close();
         });
 
@@ -55,6 +80,8 @@ public class ConfirmLocationScreen extends Application {
         rejectBtn.setOnAction(e -> {
             System.out.println("Location rejected by user.");
             // TODO: open manual input screen here
+            confirmedLocation = null;
+
             primaryStage.close();
         });
 
@@ -125,9 +152,11 @@ public class ConfirmLocationScreen extends Application {
 
 
 
-
+/*
     // For standalone testing
     public static void main(String[] args) {
         display("Athens, Greece");
     }
+
+ */
 }
