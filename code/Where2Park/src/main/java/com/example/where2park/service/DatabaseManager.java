@@ -16,8 +16,14 @@ public class DatabaseManager {
     // For now, we "save" by just printing
     public void querySaveLocation(Location userLocation) {
         System.out.println("Saving user location: " + userLocation);
-        // later: write to XML or real DB
+
+        // Assuming you know the current user's ID and name:
+        int userId = 1;  // or fetch dynamically
+        String userName = "Alice";  // or fetch dynamically
+
+        initializeOrUpdateUserData(userId, userName, userLocation);
     }
+
 
     public List<ParkingSpot> queryFindNearby(Location userLocation) {
         List<ParkingSpotDistance> spotsWithDistance = new ArrayList<>();

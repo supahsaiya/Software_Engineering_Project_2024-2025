@@ -1,28 +1,21 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.model.Location;
-import javafx.application.Application;
+import com.example.where2park.service.ManageLocationClass;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+public class ConfirmLocationScreen {
 
-
-public class ConfirmLocationScreen extends Application {
-
-
-    private static Location locationToConfirm;
-
-    public static void display(Location location) {
-        locationToConfirm = location;
-        Application.launch(ConfirmLocationScreen.class);
-    }
-
+    private static ManageLocationClass manager;
     private static Location confirmedLocation = null;
 
     public static Location getConfirmedLocation() {
@@ -30,54 +23,53 @@ public class ConfirmLocationScreen extends Application {
     }
 
 
-    @Override
-    public void start(Stage primaryStage) {
-        primaryStage.setTitle("Confirm Location");
+    public static void display(Location location, ManageLocationClass mgr) {
+        manager = mgr;
 
-        Label locationLabel = new Label("Is this your location?\n" + locationToConfirm.toString());
+        Stage window = new Stage();
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setTitle("Confirm Location");
 
+        Label locationLabel = new Label("Is this your current location?\n" + location.getAddress());
 
+        // Create WebView and load the map
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
 
-        //double[] coords = geocodeLocation(location);
-        double[] coords = geocodeLocation(locationToConfirm.getAddress());
-
+        double[] coords = geocodeLocation(location.getAddress());
         String mapUrl = "https://www.openstreetmap.org/?mlat=" + coords[0] + "&mlon=" + coords[1] + "#map=15/" + coords[0] + "/" + coords[1];
         webEngine.load(mapUrl);
 
-
-        Button confirmBtn = new Button("Confirm");
+        // Buttons
+        Button confirmBtn = new Button("Yes, Confirm");
         confirmBtn.setOnAction(e -> {
-            System.out.println("Location confirmed!");
-
-
-            // TODO: save location logic here
-            confirmedLocation = locationToConfirm;
-            primaryStage.close();
+            manager.setConfirmedLocation(location);  // OK
+            // Save confirmed location
+            window.close();
         });
 
-        Button rejectBtn = new Button("Reject");
+        Button rejectBtn = new Button("No, Enter Manually");
         rejectBtn.setOnAction(e -> {
-            System.out.println("Location rejected by user.");
-            // TODO: open manual input screen here
-            confirmedLocation = null;
+            manager.setConfirmedLocation(null);
 
-            primaryStage.close();
+            window.close();
+            if (manager != null) {
+                manager.locationRejected();  // Callback to handle manual input
+            }
         });
-
-
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(20));
+        layout.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(webView, locationLabel, confirmBtn, rejectBtn);
 
         Scene scene = new Scene(layout, 800, 600);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        window.setScene(scene);
+        window.showAndWait();
     }
-/// TEMPORARY GEOCODING METHOD
-    private double[] geocodeLocation(String location) {
+
+    // Geocoding helper (same as before)
+    private static double[] geocodeLocation(String location) {
         try {
             String encodedLocation = java.net.URLEncoder.encode(location, "UTF-8");
             String urlStr = "https://nominatim.openstreetmap.org/search?q=" + encodedLocation + "&format=json&limit=1";
@@ -106,11 +98,7 @@ public class ConfirmLocationScreen extends Application {
                     double lat = Double.parseDouble(json.substring(latIndex, json.indexOf("\"", latIndex)));
                     double lon = Double.parseDouble(json.substring(lonIndex, json.indexOf("\"", lonIndex)));
                     return new double[]{lat, lon};
-                } else {
-                    System.out.println("❌ Location not found in API response.");
                 }
-            } else {
-                System.out.println("❌ Empty or malformed response.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,6 +106,4 @@ public class ConfirmLocationScreen extends Application {
         // Default fallback (Athens)
         return new double[]{37.9838, 23.7275};
     }
-
-
 }
