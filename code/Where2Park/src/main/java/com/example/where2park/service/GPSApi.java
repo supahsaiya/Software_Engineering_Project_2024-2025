@@ -18,7 +18,14 @@ public class GPSApi {
             new Location(37.9761, 23.7313, "45 Ermou St, Athens"),
             new Location(37.9755, 23.7348, "9 Syntagma Square, Athens"),
             new Location(37.9885, 23.7319, "21 Patision Ave, Athens"),
-            new Location(37.9814, 23.7281, "84 Panepistimiou St, Athens")
+            new Location(37.9814, 23.7281, "84 Panepistimiou St, Athens"),
+            new Location(37.9783, 23.7114, "48 Persefonis St, Athens"),
+            new Location(37.9826, 23.7273, "65 Athinas St, Athens"),
+            new Location(37.9758, 23.7258, "1 Areos St, Athens"),
+            new Location(37.9714, 23.7307, "9 Afroditis St, Athens")
+
+
+
     };
 
     public Location detectLocation() {

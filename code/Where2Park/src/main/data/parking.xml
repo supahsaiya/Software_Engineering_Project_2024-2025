@@ -50,4 +50,29 @@
         <lat>37.98130013637565</lat>
         <lon>23.727997764944977</lon>
     </parking>
+    <parking>
+        <name>Parking Μοναστηράκι</name>
+        <lat>37.97775620956495</lat>
+        <lon>23.722065389156196</lon>
+    </parking>
+    <parking>
+        <name>Royal Olympic Parking</name>
+        <lat>37.967505607632816</lat>
+        <lon>23.73232215642912</lon>
+    </parking>
+    <parking>
+        <name>PARKING Ομόνοια ΠΑΡΗΣ</name>
+        <lat>37.986565762529494</lat>
+        <lon>23.72650712728484</lon>
+    </parking>
+    <parking>
+        <name>Park My Car</name>
+        <lat>37.98053956754876</lat>
+        <lon>23.713521212339316</lon>
+    </parking>
+    <parking>
+        <name>Parking Γκάζι</name>
+        <lat>37.97706480026096</lat>
+        <lon>23.71227749405655</lon>
+    </parking>
 </parkings>
