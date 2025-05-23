@@ -6,9 +6,6 @@ import com.example.where2park.ui.ConfirmLocationScreen;
 import com.example.where2park.ui.UserHomeScreen;
 import java.util.List;
 
-
-
-
 public class ManageLocationClass {
 
     private GPSApi gpsApi;
@@ -25,35 +22,36 @@ public class ManageLocationClass {
         return gpsApi.detectLocation();
     }
 
+
     public void sendLocationForConfirmation() {
         Location detectedLocation = getLocation();
-        ConfirmLocationScreen.display(detectedLocation); // Show UI
 
-        // You need to get a result back from the screen somehow
-        // For example, ConfirmLocationScreen.getConfirmedLocation()
+        if (detectedLocation == null) {
+            System.out.println("Failed to detect location.");
+            return;
+        }
+
+        ConfirmLocationScreen.display(detectedLocation);  // This blocks until UI closes
         this.confirmedLocation = ConfirmLocationScreen.getConfirmedLocation();
 
         if (confirmedLocation != null) {
+            System.out.println("Location confirmed: " + confirmedLocation);
             processUserLocation(confirmedLocation);
         } else {
-            System.out.println("User rejected location.");
-            // You could prompt for manual input here
+            System.out.println("User rejected the location. Prompt for manual input or retry.");
         }
     }
+
 
     public void processUserLocation(Location location) {
         dbManager.querySaveLocation(location);
         List<DatabaseManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby(location);
         userHomeScreen.showNearbyParkings(nearbySpots);
     }
-    /*
-    public void processUserLocation() {
-        Location location = gpsApi.detectLocation();
-        dbManager.querySaveLocation(location);
 
-        List<DatabaseManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby(location);
-        userHomeScreen.showNearbyParkings(nearbySpots);
+    public Location getConfirmedLocation() {
+        return confirmedLocation;
     }
 
-     */
+
 }

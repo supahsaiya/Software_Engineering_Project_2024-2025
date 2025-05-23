@@ -6,6 +6,10 @@ import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.File;
 import java.util.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
 
 public class DatabaseManager {
 
@@ -67,6 +71,125 @@ public class DatabaseManager {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return EARTH_RADIUS_KM * c;
     }
+
+    public void initializeOrUpdateUserData(int userId, String userName, Location location) {
+        try {
+            File file = new File("src/main/data/users.xml");
+
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc;
+
+            Element user;
+
+            if (file.exists()) {
+                doc = builder.parse(file);
+
+                NodeList users = doc.getElementsByTagName("user");
+                boolean userFound = false;
+
+                for (int i = 0; i < users.getLength(); i++) {
+                    Element u = (Element) users.item(i);
+                    String idText = u.getElementsByTagName("id").item(0).getTextContent();
+                    if (Integer.parseInt(idText) == userId) {
+                        user = u;
+                        userFound = true;
+
+                        // Update location
+                        Element locationElem = (Element) u.getElementsByTagName("location").item(0);
+                        locationElem.setAttribute("status", "pending");
+                        locationElem.getElementsByTagName("lat").item(0).setTextContent(String.valueOf(location.getLatitude()));
+                        locationElem.getElementsByTagName("lon").item(0).setTextContent(String.valueOf(location.getLongitude()));
+                        locationElem.getElementsByTagName("address").item(0).setTextContent(location.getAddress());
+
+                        break;
+                    }
+                }
+                if (!userFound) {
+                    Element root = doc.getDocumentElement();
+
+                    user = doc.createElement("user");
+                    root.appendChild(user);
+
+                    Element id = doc.createElement("id");
+                    id.appendChild(doc.createTextNode(String.valueOf(userId)));
+                    user.appendChild(id);
+
+                    Element name = doc.createElement("name");
+                    name.appendChild(doc.createTextNode(userName));
+                    user.appendChild(name);
+
+                    Element locationElem = doc.createElement("location");
+                    locationElem.setAttribute("status", "pending");
+                    user.appendChild(locationElem);
+
+                    Element lat = doc.createElement("lat");
+                    lat.appendChild(doc.createTextNode(String.valueOf(location.getLatitude())));
+                    locationElem.appendChild(lat);
+
+                    Element lon = doc.createElement("lon");
+                    lon.appendChild(doc.createTextNode(String.valueOf(location.getLongitude())));
+                    locationElem.appendChild(lon);
+
+                    Element address = doc.createElement("address");
+                    address.appendChild(doc.createTextNode(location.getAddress()));
+                    locationElem.appendChild(address);
+                }
+
+
+                if (!userFound) {
+                    System.out.println("⚠️ User ID not found.");
+                }
+
+            } else {
+                // Create new document
+                doc = builder.newDocument();
+                Element root = doc.createElement("users");
+                doc.appendChild(root);
+
+                user = doc.createElement("user");
+                root.appendChild(user);
+
+                Element id = doc.createElement("id");
+                id.appendChild(doc.createTextNode(String.valueOf(userId)));
+                user.appendChild(id);
+
+                Element name = doc.createElement("name");
+                name.appendChild(doc.createTextNode(userName));
+                user.appendChild(name);
+
+                Element locationElem = doc.createElement("location");
+                locationElem.setAttribute("status", "pending");
+                user.appendChild(locationElem);
+
+                Element lat = doc.createElement("lat");
+                lat.appendChild(doc.createTextNode(String.valueOf(location.getLatitude())));
+                locationElem.appendChild(lat);
+
+                Element lon = doc.createElement("lon");
+                lon.appendChild(doc.createTextNode(String.valueOf(location.getLongitude())));
+                locationElem.appendChild(lon);
+
+                Element address = doc.createElement("address");
+                address.appendChild(doc.createTextNode(location.getAddress()));
+                locationElem.appendChild(address);
+            }
+
+            // Write changes to file
+            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+            DOMSource source = new DOMSource(doc);
+            StreamResult result = new StreamResult(file);
+            transformer.transform(source, result);
+
+            System.out.println("✅ users.xml initialized/updated with user ID " + userId);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     // Helper class to store ParkingSpot + distance
     private static class ParkingSpotDistance {

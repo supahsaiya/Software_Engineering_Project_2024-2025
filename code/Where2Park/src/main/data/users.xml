@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<users>
+      
+  
+  <user>
+            
+    
+    <id>1</id>
+            
+    
+    <name>Alice</name>
+            
+    
+    <location status="pending">
+                  
+      
+      <lat>37.9785</lat>
+                  
+      
+      <lon>23.7267</lon>
+                  
+      
+      <address>123 Aiolou St, Athens</address>
+                
+    
+    </location>
+          
+  
+  </user>
+    
+
+</users>
