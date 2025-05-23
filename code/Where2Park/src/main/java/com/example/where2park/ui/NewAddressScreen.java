@@ -25,7 +25,7 @@ public class NewAddressScreen {
 
         Button submitButton = new Button("Submit");
 
-
+        /*
         submitButton.setOnAction(e -> {
             String address = addressField.getText();
             if (address != null && !address.isEmpty()) {
@@ -38,6 +38,14 @@ public class NewAddressScreen {
                     System.out.println("Failed to geocode address.");
                 }
                 window.close(); // Close the UI
+            }
+        });
+        */
+        submitButton.setOnAction(e -> {
+            String address = addressField.getText();
+            if (address != null && !address.isEmpty()) {
+                ManageLocationClass.newLocationAdded(address); // ✅ central entry point
+                window.close(); // ✅ close UI after triggering the logic
             }
         });
 

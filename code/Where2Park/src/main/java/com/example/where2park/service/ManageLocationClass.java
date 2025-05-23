@@ -117,6 +117,11 @@ public class ManageLocationClass {
         if (manualLocation != null) {
             instance.confirmedLocation = manualLocation;
             System.out.println("Manual location set: " + manualLocation);
+            // Save to XML
+            instance.dbManager.initializeOrUpdateUserData(1, "Alice", manualLocation);
+
+            // Resume app flow
+            instance.processUserLocation(manualLocation);
         } else {
             System.out.println("Geocoding failed for address: " + address);
         }
