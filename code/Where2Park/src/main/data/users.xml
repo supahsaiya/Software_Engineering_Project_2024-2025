@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
-                                    
+                                      
+  
   
   
   
@@ -18,7 +19,8 @@
   
   
   <user>
-                                                                        
+                                                                            
+    
     
     
     
@@ -36,7 +38,8 @@
     
     
     <id>1</id>
-                                                                        
+                                                                            
+    
     
     
     
@@ -54,7 +57,8 @@
     
     
     <name>Alice</name>
-                                                                        
+                                                                            
+    
     
     
     
@@ -72,7 +76,7 @@
     
     
     <location status="pending">
-                                                                                                            
+                                                                                                                  
       
       
       
@@ -89,8 +93,9 @@
       
       
       
-      <lat>37.9755</lat>
-                                                                                                            
+      
+      <lat>37.9885</lat>
+                                                                                                                  
       
       
       
@@ -107,8 +112,9 @@
       
       
       
-      <lon>23.7348</lon>
-                                                                                                            
+      
+      <lon>23.7319</lon>
+                                                                                                                  
       
       
       
@@ -125,8 +131,10 @@
       
       
       
-      <address>9 Syntagma Square, Athens</address>
-                                                                                                          
+      
+      <address>21 Patision Ave, Athens</address>
+                                                                                                                
+    
     
     
     
@@ -144,7 +152,8 @@
     
     
     </location>
-                                                                      
+                                                                          
+  
   
   
   
@@ -162,7 +171,8 @@
   
   
   </user>
-                                    
+                                      
+
 
 
 
