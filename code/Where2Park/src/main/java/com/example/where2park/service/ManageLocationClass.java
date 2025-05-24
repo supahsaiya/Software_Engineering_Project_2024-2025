@@ -41,6 +41,48 @@ public class ManageLocationClass {
 
     }
 
+/*
+    public void sendLocationForConfirmation() {
+        Location detectedLocation = getLocation();
+
+        if (detectedLocation == null) {
+            System.out.println("Failed to detect location.");
+            return;
+        }
+
+        ConfirmLocationScreen.display(detectedLocation);  // This blocks until UI closes
+        this.confirmedLocation = ConfirmLocationScreen.getConfirmedLocation();
+
+        if (confirmedLocation != null) {
+            System.out.println("Location confirmed: " + confirmedLocation);
+            processUserLocation(confirmedLocation);
+        } else {
+            System.out.println("User rejected the location. Prompt for manual input or retry.");
+        }
+    }
+*/
+/*
+    public void sendLocationForConfirmation() {
+        Location detectedLocation = getLocation();
+
+        if (detectedLocation == null) {
+            System.out.println("Failed to detect location.");
+            return;
+        }
+
+        ConfirmLocationScreen.display(detectedLocation, this);  // Now passes reference
+        this.confirmedLocation = ConfirmLocationScreen.getConfirmedLocation();
+
+        if (confirmedLocation != null) {
+            System.out.println("Location confirmed: " + confirmedLocation);
+            processUserLocation(confirmedLocation);
+        } else {
+            System.out.println("User rejected the location. Awaiting manual entry...");
+            // No need to do anything here now, `locationRejected()` will be triggered directly
+        }
+    }
+
+ */
 
     public Location sendLocationForConfirmation() {
         Location detectedLocation = getLocation();
