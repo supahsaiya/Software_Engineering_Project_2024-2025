@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<reviews>
+                    
+
+
+
+    
+    
+    <review>
+                        
+        
+        <userId>1</userId>
+                        
+        
+        <parkingName>Tetris Parking</parkingName>
+                        
+        
+        <bookingDate>2025-05-20</bookingDate>
+                        
+        
+        <stars>5</stars>
+                        
+        
+        <text>excellent service!</text>
+                    
+    
+    </review>
+        
+    
+    <review>
+                
+        <userId>1</userId>
+                
+        <parkingName>Tetris Parking</parkingName>
+                
+        <bookingDate>2025-05-21</bookingDate>
+                
+        <stars>5</stars>
+                
+        <text>very nice</text>
+            
+    </review>
+    
+    <review>
+        <userId>1</userId>
+        <parkingName>Plaka Old Town Parking</parkingName>
+        <bookingDate>2025-05-22</bookingDate>
+        <stars>3</stars>
+        <text>ok</text>
+    </review>
+</reviews>
