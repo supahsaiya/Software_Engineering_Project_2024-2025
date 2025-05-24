@@ -28,11 +28,13 @@ public class GPSApi {
 
     };
 
+    private static final Random rand = new Random();
+
     public Location detectLocation() {
-        Random rand = new Random();
         int index = rand.nextInt(FAKE_LOCATIONS.length);
         return FAKE_LOCATIONS[index];
     }
+
     public static Location geocode(String address) { //if user adds location manually
         try {
             String encoded = URLEncoder.encode(address, StandardCharsets.UTF_8);

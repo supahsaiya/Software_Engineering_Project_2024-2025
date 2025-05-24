@@ -5,6 +5,8 @@ import com.example.where2park.model.Location;
 import com.example.where2park.service.GPSApi;
 import com.example.where2park.service.DatabaseManager;
 
+//class made for testing
+
 public class Test {
 
     public static void main(String[] args) {

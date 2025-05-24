@@ -5,6 +5,7 @@ import com.example.where2park.model.Location;
 import com.example.where2park.ui.ConfirmLocationScreen;
 import com.example.where2park.ui.NewAddressScreen;
 import com.example.where2park.ui.UserHomeScreen;
+import com.example.where2park.ui.UserWelcomeScreen;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -28,7 +29,16 @@ public class ManageLocationClass {
 
     // renamed findLocation to getLocation for clarity
     public Location getLocation() {
-        return gpsApi.detectLocation();
+
+        // Simulate 5% chance of location services being disabled
+        if (Math.random() < 0.05) {
+            System.out.println("📴 Location services are OFF.");
+            UserWelcomeScreen.showEnableLocationMessage(); // Show user message
+            return null;
+        }
+
+        return gpsApi.detectLocation(); // Normal behavior
+
     }
 
 /*

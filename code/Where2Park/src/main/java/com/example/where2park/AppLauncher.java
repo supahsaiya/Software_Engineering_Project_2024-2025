@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
+//we use this class to launch the app right now
 public class AppLauncher extends Application {
 
     @Override
