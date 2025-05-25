@@ -4,6 +4,8 @@ import com.example.where2park.controller.ManageUserBookingClass;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+//USECASE 7 TEST
+
 public class Test extends Application {
 
     @Override

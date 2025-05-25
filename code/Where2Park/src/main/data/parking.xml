@@ -6,6 +6,8 @@
         <lon>23.7215891</lon>
         <address>Χίου 2-4, Αθήνα - Μεταξουργείο, 10437, ΑΤΤΙΚΗΣ</address>
         <tel>2105222889</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>37</currentlyAvailable>
     </parking>
     <parking>
         <name>Parking Σύνταγμα - AEGEAN </name>
@@ -13,6 +15,8 @@
         <lon>23.734417200000003</lon>
         <address>Ξενοφώντος 4, Αθήνα 105 57</address>
         <tel>2103232558</tel>
+        <totalSpots>80</totalSpots>
+        <currentlyAvailable>17</currentlyAvailable>
     </parking>
     <parking>
         <name>O Platanos</name>
@@ -20,6 +24,8 @@
         <lon>23.732042536139478</lon>
         <address>Βουλής 48, Αθήνα 105 58</address>
         <tel>2103244960</tel>
+        <totalSpots>40</totalSpots>
+        <currentlyAvailable>14</currentlyAvailable>
     </parking>
     <parking>
         <name>Metropark Parking</name>
@@ -27,6 +33,8 @@
         <lon>23.731173500418656</lon>
         <address>Μητροπόλεως 21-23 και Πατρώου 8, 10557, Αθήνα</address>
         <tel>2103243801</tel>
+        <totalSpots>45</totalSpots>
+        <currentlyAvailable>20</currentlyAvailable>
     </parking>
     <parking>
         <name>Plaka Parking</name>
@@ -34,6 +42,8 @@
         <lon>23.730958923697454</lon>
         <address>Θουκυδίδου 2-3, Αθήνα 105 56</address>
         <tel>2103241364</tel>
+        <totalSpots>25</totalSpots>
+        <currentlyAvailable>9</currentlyAvailable>
     </parking>
     <parking>
         <name>Parking Kostas</name>
@@ -41,6 +51,8 @@
         <lon>23.72879169881342</lon>
         <address>Αγγέλου Βλάχου 6, Αθήνα 105 56</address>
         <tel>2103227405</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>12</currentlyAvailable>
     </parking>
     <parking>
         <name>PARKING CHRISTOKOPIDOU</name>
@@ -48,6 +60,8 @@
         <lon>23.723427280783635</lon>
         <address>Χριστοκοπίδου 11, Αθήνα 105 54</address>
         <tel>6951819815</tel>
+        <totalSpots>40</totalSpots>
+        <currentlyAvailable>26</currentlyAvailable>
     </parking>
     <parking>
         <name>Plaka Old Town Parking</name>
@@ -55,6 +69,8 @@
         <lon>23.729220852255757</lon>
         <address>Φλέσσα 6, Αθήνα 105 56</address>
         <tel>2103248972</tel>
+        <totalSpots>35</totalSpots>
+        <currentlyAvailable>3</currentlyAvailable>
     </parking>
     <parking>
         <name>Tetris Parking</name>
@@ -62,6 +78,8 @@
         <lon>23.725809082388857</lon>
         <address>Πλ. Αγίου Δημητρίου 4, Αθήνα 105 54</address>
         <tel>2103243640</tel>
+        <totalSpots>45</totalSpots>
+        <currentlyAvailable>19</currentlyAvailable>
     </parking>
     <parking>
         <name>Parking Πλατείας Κοτζιά</name>
@@ -69,6 +87,8 @@
         <lon>23.727997764944977</lon>
         <address>Σοφοκλέους 18, Αθήνα 105 51</address>
         <tel>2103310327</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>20</currentlyAvailable>
     </parking>
     <parking>
         <name>Parking Μοναστηράκι</name>
@@ -76,6 +96,8 @@
         <lon>23.722065389156196</lon>
         <address>Σοφοκλέους 18, Αθήνα 105 51</address>
         <tel>2103310327</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>8</currentlyAvailable>
     </parking>
     <parking>
         <name>Royal Olympic Parking</name>
@@ -83,6 +105,8 @@
         <lon>23.73232215642912</lon>
         <address>Καλλιρρόης 4, Αθήνα 117 43</address>
         <tel>2103316978</tel>
+        <totalSpots>30</totalSpots>
+        <currentlyAvailable>11</currentlyAvailable>
     </parking>
     <parking>
         <name>PARKING Ομόνοια ΠΑΡΗΣ</name>
@@ -90,6 +114,8 @@
         <lon>23.72650712728484</lon>
         <address>Βερανζέρου 36, Αθήνα 104 32</address>
         <tel>2105228620</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>23</currentlyAvailable>
     </parking>
     <parking>
         <name>Park My Car</name>
@@ -97,6 +123,8 @@
         <lon>23.713521212339316</lon>
         <address>Ιερά Οδός 36, Αθήνα 104 35</address>
         <tel>2103210026</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>38</currentlyAvailable>
     </parking>
     <parking>
         <name>Parking Γκάζι</name>
@@ -104,5 +132,7 @@
         <lon>23.71227749405655</lon>
         <address>Ευάδνης 12-14, Αθήνα 118 54</address>
         <tel>2103598766</tel>
+        <totalSpots>50</totalSpots>
+        <currentlyAvailable>24</currentlyAvailable>
     </parking>
 </parkings>

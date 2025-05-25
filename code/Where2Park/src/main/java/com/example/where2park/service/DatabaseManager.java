@@ -358,8 +358,12 @@ public class DatabaseManager {
                     String address = el.getElementsByTagName("address").item(0).getTextContent();
                     String tel = el.getElementsByTagName("tel").item(0).getTextContent();
 
-                    return new Parking(pName, lat, lon, address, tel);
+                    int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
+                    int currentlyAvailable = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
+
+                    return new Parking(pName, lat, lon, address, tel, totalSpots, currentlyAvailable);
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
