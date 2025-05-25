@@ -12,19 +12,37 @@ import javafx.stage.Stage;
 
 public class ParkingReviewForm {
 
+    // Overloaded method (no error message) - overloading is totally common in java
     public static void display(Parking parking, Booking booking, int userId) {
+        display(parking, booking, userId, "");  // Delegate to full method with empty error
+    }
+
+    // Main method with optional error message
+    public static void display(Parking parking, Booking booking, int userId, String errorMessage) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20");
 
-        // Show detailed info
-        Label title = new Label("Review: " + parking.getName());
-        Label address = new Label("Address: " + parking.getAddress());
-        Label tel = new Label("Phone: " + parking.getTel());
-        Label bookingDate = new Label("Booking Date: " + booking.getDate());
+        // Parking info and booking date
+        Label info = new Label("Parking: " + parking.getName() + "\n" +  "Address: " + parking.getAddress() + "\nBooking Date: " + booking.getDate());
+        info.setStyle("-fx-font-weight: bold;");
 
+        // Error label, only shown if not empty
+        Label errorLabel = new Label(errorMessage);
+        if (!errorMessage.isEmpty()) {
+            errorLabel.setStyle("-fx-text-fill: red;");
+        }
+
+        // User input fields
         TextArea reviewText = new TextArea();
-        reviewText.setPromptText("Write your review...");
+        reviewText.setPromptText("Write your review... (limit 200 char)");
+        // Limit input to 200 characters
+        reviewText.textProperty().addListener((obs, oldText, newText) -> {
+            if (newText.length() > 200) {
+                reviewText.setText(oldText);  // revert to old text if new text too long
+            }
+        });
+
 
         TextField starInput = new TextField();
         starInput.setPromptText("Stars (1 to 5)");
@@ -33,30 +51,26 @@ public class ParkingReviewForm {
         submit.setOnAction(e -> {
             String review = reviewText.getText().trim();
             String starsStr = starInput.getText().trim();
+            int stars = starsStr.matches("\\d+") ? Integer.parseInt(starsStr) : -1;
 
-            if (!validateStars(starsStr)) {
-                showAlert("Invalid star rating. Enter a number from 1 to 5.");
-                return;
-            }
-
-            if (!validateText(review)) {
-                showAlert("Review text cannot be empty.");
-                return;
-            }
-
-            int stars = Integer.parseInt(starsStr);
             ManageReviewClass.reviewValidated(parking, booking, userId, stars, review);
             stage.close();
-
         });
 
-        root.getChildren().addAll(title, address, tel, bookingDate, reviewText, starInput, submit);
-        stage.setScene(new Scene(root, 400, 400));
+        // Add components
+        root.getChildren().addAll(info);
+        if (!errorMessage.isEmpty()) {
+            root.getChildren().add(errorLabel);
+        }
+        root.getChildren().addAll(reviewText, starInput, submit);
+
+        stage.setScene(new Scene(root, 400, 350));
         stage.setTitle("Add Review");
         stage.show();
     }
 
-    private static boolean validateStars(String stars) {
+
+    public static boolean validateStars(String stars) {
         try {
             int val = Integer.parseInt(stars);
             return val >= 1 && val <= 5;
@@ -65,9 +79,10 @@ public class ParkingReviewForm {
         }
     }
 
-    private static boolean validateText(String text) {
-        return !text.isEmpty();
+    public static boolean validateText(String text) {
+        return !text.isEmpty() && text.length() <= 200;
     }
+
 
     private static void showAlert(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

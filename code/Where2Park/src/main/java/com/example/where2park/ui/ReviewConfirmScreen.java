@@ -1,5 +1,8 @@
 package com.example.where2park.ui;
 
+import com.example.where2park.controller.ManageReviewClass;
+import com.example.where2park.model.Booking;
+import com.example.where2park.model.Parking;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,24 +10,44 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ReviewConfirmScreen {
-
-    public static void display(Runnable onConfirmCallback) {
+    public static void display(Parking parking, Booking booking, int userId, int stars, String reviewText) {
         Stage stage = new Stage();
-        VBox root = new VBox(15);
+        VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20");
 
-        Label message = new Label("Your review has been saved.\nDo you want to confirm?");
-        Button confirmButton = new Button("Confirm");
+        Label summary = new Label("You are about to submit this review:\n\n" +
+                "Parking: " + parking.getName() + "\n" +
+                "Date: " + booking.getDate() + "\n" +
+                "Stars: " + stars + "\n" +
+                "Review: " + reviewText);
 
-        confirmButton.setOnAction(e -> {
+        Button confirm = new Button("Confirm");
+        confirm.setOnAction(e -> {
+            ManageReviewClass manageReview = new ManageReviewClass(userId, parking.getName(), booking.getDate());
+
+            if (!ParkingReviewForm.validateStars(String.valueOf(stars))) {
+                manageReview.errorStars();
+                stage.close();
+                return;
+            }
+
+            if (!ParkingReviewForm.validateText(reviewText)) {
+                manageReview.errorText();
+                stage.close();
+                return;
+            }
+
+            manageReview.confirmationDone(parking, booking, stars, reviewText);
             stage.close();
-            onConfirmCallback.run();  // Calls ManageReviewClass.confirmationDone()
         });
 
-        root.getChildren().addAll(message, confirmButton);
 
-        stage.setScene(new Scene(root, 300, 150));
+        root.getChildren().addAll(summary, confirm);
+        stage.setScene(new Scene(root, 400, 300));
         stage.setTitle("Confirm Review");
         stage.show();
     }
 }
+
+
+

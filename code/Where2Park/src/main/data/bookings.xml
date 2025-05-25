@@ -23,4 +23,10 @@
         <parkingSpot>O Platanos</parkingSpot>
         <date>2025-05-24</date>
     </booking>
+    <booking>
+        <id>102</id>
+        <userId>1</userId>
+        <parkingSpot>Plaka Old Town Parking</parkingSpot>
+        <date>2025-05-24</date>
+    </booking>
 </bookings>

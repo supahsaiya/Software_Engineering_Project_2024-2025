@@ -48,7 +48,7 @@ public class Review {
 
             Element reviewElem = doc.createElement("review");
 
-            Element parkingElem = doc.createElement("parkingSpot");
+            Element parkingElem = doc.createElement("parkingName");
             parkingElem.setTextContent(parkingSpot);
             reviewElem.appendChild(parkingElem);
 

@@ -23,12 +23,9 @@ public class ManageReviewClass {
 
     // Called after user submits review
     public static void reviewValidated(Parking parking, Booking booking, int userId, int stars, String reviewText) {
-        ReviewConfirmScreen.display(() -> {
-            // On Confirm button press, call confirmationDone
-            new ManageReviewClass(userId, parking.getName(), booking.getDate())
-                    .confirmationDone(parking, booking, stars, reviewText);
-        });
+        ReviewConfirmScreen.display(parking, booking, userId, stars, reviewText);
     }
+
 
     // Called after confirm
     public void confirmationDone(Parking parking, Booking booking, int stars, String reviewText) {
@@ -45,4 +42,14 @@ public class ManageReviewClass {
             System.out.println(" Failed to save review.");
         }
     }
+    public void errorStars() {
+        System.out.println("⚠️ Error: Star rating missing or invalid.");
+        ParkingReviewForm.display(parking, booking, userId, "Please select a star rating from 1 to 5.");
+    }
+
+    public void errorText() {
+        System.out.println("⚠️ Error: Review text too long.");
+        ParkingReviewForm.display(parking, booking, userId, "Review text cannot exceed 200 characters.");
+    }
+
 }
