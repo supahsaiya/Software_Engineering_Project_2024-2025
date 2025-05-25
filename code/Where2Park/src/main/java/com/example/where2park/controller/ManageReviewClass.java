@@ -2,6 +2,7 @@ package com.example.where2park.controller;
 
 import com.example.where2park.model.Booking;
 import com.example.where2park.model.Parking;
+import com.example.where2park.model.Review;
 import com.example.where2park.service.DatabaseManager;
 import com.example.where2park.ui.ParkingReviewForm;
 import com.example.where2park.ui.ReviewConfirmScreen;
@@ -28,6 +29,7 @@ public class ManageReviewClass {
         ReviewConfirmScreen.display(parking, booking, userId, stars, reviewText);
     }
 
+    /*
     public static void confirmationDone(Parking parking, Booking booking, int userId, int stars, String reviewText) {
         DatabaseManager.saveReview(parking.getName(), userId, booking.getDate(), stars, reviewText);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -35,4 +37,16 @@ public class ManageReviewClass {
         alert.setContentText("Your review has been submitted!");
         alert.showAndWait();
     }
+
+     */
+    public void confirmationDone(Review review, String clientEmail) {
+        boolean success = review.updateReviewList();
+        if (success) {
+            ManageEmailClass.sendEmailTo(clientEmail);
+            System.out.println("Review saved and confirmation email (mock) sent.");
+        } else {
+            System.out.println("Failed to save review.");
+        }
+    }
+
 }
