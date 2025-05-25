@@ -1,24 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
-
+    
   <user>
-
+        
     <id>1</id>
-
+        
     <name>Alice</name>
-
+        
     <location status="pending">
-
-      <lat>37.9885</lat>
-
-      <lon>23.7319</lon>
-
-      <address>21 Patision Ave, Athens</address>
-
+            
+      <lat>37.9826</lat>
+            
+      <lon>23.7273</lon>
+            
+      <address>65 Athinas St, Athens</address>
+          
     </location>
-
+      
   </user>
-                                      
+                                        
+
 
 
 

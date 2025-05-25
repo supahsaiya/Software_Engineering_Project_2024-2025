@@ -2,13 +2,25 @@ package com.example.where2park.ui;
 
 import com.example.where2park.service.DatabaseManager;
 import java.util.List;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 
 public class UserHomeScreen {
 
-    public void showNearbyParkings(List<DatabaseManager.ParkingSpot> spots) {
-        System.out.println("\nNearby parking spots:");
-        for (DatabaseManager.ParkingSpot spot : spots) {
-            System.out.println("- " + spot);
-        }
+    public static void display(int userId) {
+        Stage stage = new Stage();
+        VBox root = new VBox(10);
+        root.setStyle("-fx-padding: 20");
+
+        Label welcomeLabel = new Label("Welcome back, Client #" + userId + "!");
+        // You can add more UI elements here for the client home page
+
+        root.getChildren().add(welcomeLabel);
+
+        stage.setScene(new Scene(root, 400, 300));
+        stage.setTitle("Client Home");
+        stage.show();
     }
 }
