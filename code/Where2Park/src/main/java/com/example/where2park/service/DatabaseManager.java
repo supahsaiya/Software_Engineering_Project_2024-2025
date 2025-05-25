@@ -1,5 +1,6 @@
 package com.example.where2park.service;
 
+import com.example.where2park.model.Client;
 import com.example.where2park.model.Location;
 import com.example.where2park.model.Booking;
 
@@ -358,6 +359,27 @@ public class DatabaseManager {
                     String tel = el.getElementsByTagName("tel").item(0).getTextContent();
 
                     return new Parking(pName, lat, lon, address, tel);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Client getClientById(int userId) {
+        try {
+            File file = new File("src/main/data/users.xml");
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
+            NodeList users = doc.getElementsByTagName("user");
+
+            for (int i = 0; i < users.getLength(); i++) {
+                Element userElem = (Element) users.item(i);
+
+                int id = Integer.parseInt(userElem.getElementsByTagName("id").item(0).getTextContent());
+                if (id == userId) {
+                    String name = userElem.getElementsByTagName("name").item(0).getTextContent();
+                    return new Client(id, name);
                 }
             }
         } catch (Exception e) {

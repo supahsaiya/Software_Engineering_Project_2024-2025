@@ -32,7 +32,7 @@ public class Review {
     //Moved here as per sequence diagram
     public boolean updateReviewList() {
         try {
-            File file = new File("reviews.xml");
+            File file = new File("src/main/data/reviews.xml");
 
             Document doc;
             Element root;

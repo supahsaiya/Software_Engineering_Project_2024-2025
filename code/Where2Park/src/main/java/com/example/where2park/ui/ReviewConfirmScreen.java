@@ -1,36 +1,30 @@
 package com.example.where2park.ui;
 
-import com.example.where2park.model.Booking;
-import com.example.where2park.model.Parking;
-import com.example.where2park.controller.ManageReviewClass;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ReviewConfirmScreen {
 
-    public static void display(Parking parking, Booking booking, int userId, int stars, String reviewText) {
+    public static void display(Runnable onConfirmCallback) {
         Stage stage = new Stage();
-        VBox root = new VBox(10);
+        VBox root = new VBox(15);
         root.setStyle("-fx-padding: 20");
 
-        Label title = new Label("Confirm Your Review");
-        Label parkingLabel = new Label("Parking: " + parking.getName());
-        Label address = new Label("Address: " + parking.getAddress());
-        Label dateLabel = new Label("Booking Date: " + booking.getDate());
-        Label starsLabel = new Label("Stars: " + stars);
-        Label reviewLabel = new Label("Review: " + reviewText);
+        Label message = new Label("Your review has been saved.\nDo you want to confirm?");
+        Button confirmButton = new Button("Confirm");
 
-        Button confirmBtn = new Button("Confirm");
-        confirmBtn.setOnAction(e -> {
+        confirmButton.setOnAction(e -> {
             stage.close();
-            ManageReviewClass.confirmationDone(parking, booking, userId, stars, reviewText);
+            onConfirmCallback.run();  // Calls ManageReviewClass.confirmationDone()
         });
 
-        root.getChildren().addAll(title, parkingLabel, address, dateLabel, starsLabel, reviewLabel, confirmBtn);
-        stage.setScene(new Scene(root, 400, 300));
-        stage.setTitle("Review Confirmation");
+        root.getChildren().addAll(message, confirmButton);
+
+        stage.setScene(new Scene(root, 300, 150));
+        stage.setTitle("Confirm Review");
         stage.show();
     }
 }

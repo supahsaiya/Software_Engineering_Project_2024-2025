@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<reviews>
+  <review>
+    <parkingSpot>O Platanos</parkingSpot>
+    <userId>1</userId>
+    <bookingDate>2025-05-24</bookingDate>
+    <stars>5</stars>
+    <text>Excellent Service! 5/5</text>
+  </review>
+</reviews>
