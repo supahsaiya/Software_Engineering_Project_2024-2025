@@ -52,6 +52,11 @@ public class Parking {
         return -1; // Error or not found
     }
 
+    public int updateTemporarySpotsList(int newAvailable) {
+        this.setCurrentlyAvailable(newAvailable);
+        return newAvailable;
+    }
+
 
     public String getName() { return name; }
     public double getLat() { return lat; }
@@ -60,6 +65,7 @@ public class Parking {
     public String getTel() { return tel; }
     public int getTotalSpots() { return totalSpots; }
     public int getCurrentlyAvailable() { return currentlyAvailable; }
+
 
     public void setCurrentlyAvailable(int currentlyAvailable) {
         this.currentlyAvailable = currentlyAvailable;

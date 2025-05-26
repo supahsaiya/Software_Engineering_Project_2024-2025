@@ -1,5 +1,6 @@
 package com.example.where2park.ui;
 
+import com.example.where2park.controller.ManageAvailabilityClass;
 import com.example.where2park.model.Parking;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,6 +27,8 @@ public class AvailabilityWindow {
 
     private static Label currentAvailabilityLabel;
     private static Label totalSpotsLabel;
+
+
 
     /**
      * Displays the Availability Window for a given parking object.
@@ -83,20 +86,30 @@ public class AvailabilityWindow {
         Button decrease = new Button("▼");
 
         increase.setOnAction(e -> {
-            int updated = parking.getCurrentlyAvailable() + 1;
-            if (validateAvailabilityUpdate(parking, updated)) {
-                parking.setCurrentlyAvailable(updated);
-                availability.setText("Currently Available: " + updated);
+            int newValue = parking.getCurrentlyAvailable() + 1;
+
+            if (validateAvailabilityUpdate(parking, newValue)) {
+                ManageAvailabilityClass manager = new ManageAvailabilityClass();
+                manager.validationSuccessful();
+
+                int updated = parking.updateTemporarySpotsList(newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
+                showConfirmationMessage("Updated successfully.");
+                showNewAvailableSpots(availability, updated);
             }
         });
 
         decrease.setOnAction(e -> {
-            int updated = parking.getCurrentlyAvailable() - 1;
-            if (validateAvailabilityUpdate(parking, updated)) {
-                parking.setCurrentlyAvailable(updated);
-                availability.setText("Currently Available: " + updated);
+            int newValue = parking.getCurrentlyAvailable() - 1;
+
+            if (validateAvailabilityUpdate(parking, newValue)) {
+                ManageAvailabilityClass manager = new ManageAvailabilityClass();
+                manager.validationSuccessful();
+
+                int updated = parking.updateTemporarySpotsList(newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
+                showConfirmationMessage("Updated successfully.");
+                showNewAvailableSpots(availability, updated);
             }
         });
 
@@ -107,9 +120,19 @@ public class AvailabilityWindow {
         stage.show();
     }
 
+
     private static boolean validateAvailabilityUpdate(Parking parking, int newValue) {
         return newValue >= 0 && newValue <= parking.getTotalSpots();
     }
+    public static void showConfirmationMessage(String message) {
+        // Simple feedback for now
+        System.out.println("[Confirmation] " + message);
+    }
+
+    public static void showNewAvailableSpots(Label label, int updated) {
+        label.setText("Currently Available: " + updated);
+    }
+
 
     private static void updateAvailabilityInXML(String parkingName, int newAvailable) {
         try {
