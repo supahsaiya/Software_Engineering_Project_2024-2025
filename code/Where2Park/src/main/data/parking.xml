@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- data/parkings.xml --><parkings>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- data/parkings.xml --><parkings>
     <parking>
         <name>OPEN24</name>
         <lat>37.9879611</lat>
