@@ -60,4 +60,9 @@ public class Parking {
     public String getTel() { return tel; }
     public int getTotalSpots() { return totalSpots; }
     public int getCurrentlyAvailable() { return currentlyAvailable; }
+
+    public void setCurrentlyAvailable(int currentlyAvailable) {
+        this.currentlyAvailable = currentlyAvailable;
+    }
+
 }

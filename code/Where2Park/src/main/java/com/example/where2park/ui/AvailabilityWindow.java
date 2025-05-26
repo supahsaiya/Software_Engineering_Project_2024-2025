@@ -2,9 +2,25 @@ package com.example.where2park.ui;
 
 import com.example.where2park.model.Parking;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+
+import java.io.File;
+
 
 public class AvailabilityWindow {
 
@@ -53,4 +69,75 @@ public class AvailabilityWindow {
             totalSpotsLabel.setText("Total Spots: " + parking.getTotalSpots());
         }
     }
+
+    public static void updateAvailableSpots(Parking parking) {
+        Stage stage = new Stage();
+        VBox root = new VBox(10);
+        root.setStyle("-fx-padding: 20; -fx-alignment: center;");
+
+        Label title = new Label("Update Availability for: " + parking.getName());
+        Label availability = new Label("Currently Available: " + parking.getCurrentlyAvailable());
+        availability.setStyle("-fx-font-size: 14px;");
+
+        Button increase = new Button("▲");
+        Button decrease = new Button("▼");
+
+        increase.setOnAction(e -> {
+            int updated = parking.getCurrentlyAvailable() + 1;
+            if (validateAvailabilityUpdate(parking, updated)) {
+                parking.setCurrentlyAvailable(updated);
+                availability.setText("Currently Available: " + updated);
+                updateAvailabilityInXML(parking.getName(), updated);
+            }
+        });
+
+        decrease.setOnAction(e -> {
+            int updated = parking.getCurrentlyAvailable() - 1;
+            if (validateAvailabilityUpdate(parking, updated)) {
+                parking.setCurrentlyAvailable(updated);
+                availability.setText("Currently Available: " + updated);
+                updateAvailabilityInXML(parking.getName(), updated);
+            }
+        });
+
+        root.getChildren().addAll(title, availability, increase, decrease);
+
+        stage.setScene(new Scene(root, 250, 200));
+        stage.setTitle("Update Availability");
+        stage.show();
+    }
+
+    private static boolean validateAvailabilityUpdate(Parking parking, int newValue) {
+        return newValue >= 0 && newValue <= parking.getTotalSpots();
+    }
+
+    private static void updateAvailabilityInXML(String parkingName, int newAvailable) {
+        try {
+            File file = new File("src/main/data/parking.xml");
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
+            NodeList parkings = doc.getElementsByTagName("parking");
+
+            for (int i = 0; i < parkings.getLength(); i++) {
+                Element el = (Element) parkings.item(i);
+                String name = el.getElementsByTagName("name").item(0).getTextContent();
+
+                if (name.equals(parkingName)) {
+                    el.getElementsByTagName("currentlyAvailable").item(0).setTextContent(String.valueOf(newAvailable));
+                    break;
+                }
+            }
+
+            Transformer tf = TransformerFactory.newInstance().newTransformer();
+            tf.setOutputProperty(OutputKeys.INDENT, "yes");
+            tf.transform(new DOMSource(doc), new StreamResult(file));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public static void validateAvailabilityUpdate() {
+        // Currently no validation logic required
+        System.out.println(" validateAvailabilityUpdate() called.");
+    }
+
+
 }

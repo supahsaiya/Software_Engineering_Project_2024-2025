@@ -10,15 +10,17 @@ public class UseCase8Test extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Simulate selecting a parking spot by name
-        String parkingName = "Parking Γκάζι"; // make sure this exists in your XML
+        String parkingName = "Parking Γκάζι"; // Ensure this exists in parking.xml
         Parking parking = DatabaseManager.getParkingByName(parkingName);
 
         if (parking != null) {
-            // Open the availability window
+            // First, display current availability
             AvailabilityWindow.display(parking);
+
+            // Also open the window to update availability
+            AvailabilityWindow.updateAvailableSpots(parking);
         } else {
-            System.out.println("Parking not found: " + parkingName);
+            System.out.println("❌ Parking not found: " + parkingName);
         }
     }
 
