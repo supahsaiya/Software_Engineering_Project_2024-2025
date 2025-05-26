@@ -87,31 +87,39 @@ public class AvailabilityWindow {
 
         increase.setOnAction(e -> {
             int newValue = parking.getCurrentlyAvailable() + 1;
+            ManageAvailabilityClass manager = new ManageAvailabilityClass();
 
             if (validateAvailabilityUpdate(parking, newValue)) {
-                ManageAvailabilityClass manager = new ManageAvailabilityClass();
                 manager.validationSuccessful();
-
                 int updated = parking.updateTemporarySpotsList(newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
+            } else {
+                manager.capacityOverflow();
+                showErrorMessage("Cannot exceed capacity of " + parking.getTotalSpots());
             }
         });
+
+
 
         decrease.setOnAction(e -> {
             int newValue = parking.getCurrentlyAvailable() - 1;
+            ManageAvailabilityClass manager = new ManageAvailabilityClass();
 
             if (validateAvailabilityUpdate(parking, newValue)) {
-                ManageAvailabilityClass manager = new ManageAvailabilityClass();
                 manager.validationSuccessful();
-
                 int updated = parking.updateTemporarySpotsList(newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
+            } else {
+                manager.capacityUnderflow();
+                showErrorMessage("Cannot have negative available spots.");
             }
         });
+
+
 
         root.getChildren().addAll(title, availability, increase, decrease);
 
@@ -160,6 +168,10 @@ public class AvailabilityWindow {
     public static void validateAvailabilityUpdate() {
         // Currently no validation logic required
         System.out.println(" validateAvailabilityUpdate() called.");
+    }
+    public static void showErrorMessage(String message) {
+        // You can replace this with a pop-up if needed
+        System.err.println("[Error] " + message);
     }
 
 
