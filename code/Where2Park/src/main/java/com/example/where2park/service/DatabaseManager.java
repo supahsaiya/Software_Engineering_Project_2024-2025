@@ -402,8 +402,36 @@ public class DatabaseManager {
             e.printStackTrace();
         }
         return null;
+
+
     }
 
+    public static List<Parking> loadParkings() {
+        List<Parking> parkingList = new ArrayList<>();
+        try {
+            File file = new File("src/main/data/parking.xml");
+            if (!file.exists()) return parkingList;
+
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
+            NodeList parkings = doc.getElementsByTagName("parking");
+
+            for (int i = 0; i < parkings.getLength(); i++) {
+                Element el = (Element) parkings.item(i);
+                String name = el.getElementsByTagName("name").item(0).getTextContent();
+                String address = el.getElementsByTagName("address").item(0).getTextContent();
+                String tel = el.getElementsByTagName("tel").item(0).getTextContent();
+                int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
+                int available = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
+                double lat = 0.0, lon = 0.0; // You can extract from XML if needed
+
+                Parking p = new Parking(name, lat, lon, address, tel, totalSpots, available);
+                parkingList.add(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return parkingList;
+    }
 
     //Additional classes
 
