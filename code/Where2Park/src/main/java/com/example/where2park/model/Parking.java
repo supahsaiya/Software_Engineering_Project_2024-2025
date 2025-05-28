@@ -1,6 +1,8 @@
 package com.example.where2park.model;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -69,6 +71,58 @@ public class Parking {
 
     public void setCurrentlyAvailable(int currentlyAvailable) {
         this.currentlyAvailable = currentlyAvailable;
+    }
+
+    //HELPER CLASSES
+
+    public static Parking loadFromXML(String parkingName) {
+        try {
+            File file = new File("src/main/data/parking.xml");
+            if (!file.exists()) return null;
+
+            Document doc = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().parse(file);
+            NodeList parkings = doc.getElementsByTagName("parking");
+
+            for (int i = 0; i < parkings.getLength(); i++) {
+                Element el = (Element) parkings.item(i);
+                String name = el.getElementsByTagName("name").item(0).getTextContent();
+                if (name.equalsIgnoreCase(parkingName)) {
+                    double lat = Double.parseDouble(el.getElementsByTagName("lat").item(0).getTextContent());
+                    double lon = Double.parseDouble(el.getElementsByTagName("lon").item(0).getTextContent());
+                    String address = el.getElementsByTagName("address").item(0).getTextContent();
+                    String tel = el.getElementsByTagName("tel").item(0).getTextContent();
+                    int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
+                    int currentlyAvailable = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
+
+                    return new Parking(name, lat, lon, address, tel, totalSpots, currentlyAvailable);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null; // Not found or error
+    }
+
+    public static List<String> getAllParkingNames() {
+        List<String> parkingNames = new ArrayList<>();
+        try {
+            File file = new File("src/main/data/parking.xml");
+            if (!file.exists()) return parkingNames;
+
+            Document doc = DocumentBuilderFactory.newInstance()
+                    .newDocumentBuilder().parse(file);
+            NodeList parkings = doc.getElementsByTagName("parking");
+
+            for (int i = 0; i < parkings.getLength(); i++) {
+                Element el = (Element) parkings.item(i);
+                String name = el.getElementsByTagName("name").item(0).getTextContent();
+                parkingNames.add(name);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return parkingNames;
     }
 
 }

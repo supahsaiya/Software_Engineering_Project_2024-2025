@@ -28,6 +28,18 @@ public class DatabaseManager {
         initializeOrUpdateUserData(userId, userName, userLocation);
     }
 
+    public static List<String> queryStatisticalCategories() {
+        return Arrays.asList("Κρατήσεις", "Έσοδα");
+    }
+
+    public static String queryStatistics(String category, String filter) {
+        if (category.equals("Κρατήσεις") && filter.equals("Ημέρα")) {
+            return "Στατιστικά Κρατήσεων ανά Ημέρα:\nΔευτέρα: 10\nΤρίτη: 12\nΤετάρτη: 15";
+        } else if (category.equals("Έσοδα") && filter.equals("Μήνας")) {
+            return "Στατιστικά Εσόδων ανά Μήνα:\nΙανουάριος: 800€\nΦεβρουάριος: 950€";
+        }
+        return null; // Simulate no data (Step 5a.1)
+    }
 
     public List<ParkingSpot> queryFindNearby(Location userLocation) {
         List<ParkingSpotDistance> spotsWithDistance = new ArrayList<>();

@@ -1,5 +1,6 @@
 package com.example.where2park.ui;
 
+import com.example.where2park.controller.ManageSearchCategoriesClass;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,11 @@ public class MainMenu extends Application {
         primaryStage.setTitle("Κεντρικό Μενού");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void selectStatistics() {
+        ManageSearchCategoriesClass searchCategories = new ManageSearchCategoriesClass();
+        searchCategories.display(); // Step 2 of Use Case
     }
 
     public static void main(String[] args) {
