@@ -12,21 +12,28 @@ public class StatsScreen {
         Stage window = new Stage();
         window.setTitle("Στατιστικά");
 
+        VBox layout = showStatistics(statsData);  // Diagram step 2
+        Scene scene = new Scene(layout, 400, 300);
+
+        window.setScene(scene);
+        window.show();
+    }
+
+    public static VBox showStatistics(String statsData) {
         Label statsLabel = new Label("Στατιστικά:\n" + statsData);
 
         Button backButton = new Button("Επιστροφή");
         backButton.setOnAction(e -> {
-            completesStats(); // Step 8
-            window.close();
+            completesStats(); // Step 3 in diagram
+            ((Stage) backButton.getScene().getWindow()).close();
         });
 
         VBox layout = new VBox(10, statsLabel, backButton);
         layout.setStyle("-fx-padding: 20;");
-        window.setScene(new Scene(layout, 400, 300));
-        window.show();
+        return layout;
     }
 
     public static void completesStats() {
-        EmployeeHomeScreen.display(); // Go back to employee home screen
+        EmployeeHomeScreen.display(); // Back to main menu
     }
 }

@@ -446,7 +446,7 @@ public class DatabaseManager {
         }
     }
 
-
+    //NOT IN USE ANYMORE
     public static class ParkingSpot {
         public String name;
         public double lat;

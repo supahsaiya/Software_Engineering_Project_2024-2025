@@ -165,10 +165,12 @@ public class AvailabilityWindow {
             e.printStackTrace();
         }
     }
+    /*
     public static void validateAvailabilityUpdate() {
         // Currently no validation logic required
         System.out.println(" validateAvailabilityUpdate() called.");
     }
+     */
     public static void showErrorMessage(String message) {
         // You can replace this with a pop-up if needed
         System.err.println("[Error] " + message);
