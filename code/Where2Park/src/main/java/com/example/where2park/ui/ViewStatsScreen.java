@@ -20,51 +20,15 @@ public class ViewStatsScreen {
 
         Label title = new Label("Επιλέξτε Πάρκινγκ, Κατηγορία και Φίλτρο Χρόνου:");
 
-        // Load parkings from XML
-        List<Parking> parkings = DatabaseManager.loadParkings(); // You will define this method
-        ComboBox<Parking> parkingBox = new ComboBox<>(FXCollections.observableArrayList(parkings));
-        parkingBox.setPromptText("Επιλέξτε πάρκινγκ");
-
-        // Show parking name in dropdown
-        parkingBox.setConverter(new StringConverter<>() {
-            @Override
-            public String toString(Parking parking) {
-                return parking != null ? parking.getName() : "";
-            }
-
-            @Override
-            public Parking fromString(String string) {
-                return null; // Not needed
-            }
-        });
-
+        ComboBox<Parking> parkingBox = new ComboBox<>();
         ComboBox<String> categoryBox = new ComboBox<>();
         ComboBox<String> filterBox = new ComboBox<>();
-        categoryBox.getItems().addAll(DatabaseManager.queryStatisticalCategories()); // Step 3
-        filterBox.getItems().addAll("Ημέρα", "Ώρα", "Μήνας");
+
+        showStatisticalCategories(parkingBox, categoryBox, filterBox); // Step 2
 
         Button submit = new Button("Εμφάνιση");
-
         submit.setOnAction(e -> {
-            Parking selectedParking = parkingBox.getValue();
-            String category = categoryBox.getValue();
-            String filter = filterBox.getValue();
-
-            if (selectedParking == null || category == null || filter == null) {
-                showErrorMessage("Πρέπει να επιλέξετε πάρκινγκ, κατηγορία και φίλτρο.");
-                return;
-            }
-
-            String result = DatabaseManager.queryStatistics(category, filter); // Step 5
-            if (result == null) {
-                showErrorMessage("Δεν υπάρχουν διαθέσιμα δεδομένα για την επιλογή σας.");
-                return;
-            }
-
-            String header = "Πάρκινγκ: " + selectedParking.getName()
-                    + "\nΔιεύθυνση: " + selectedParking.getAddress() + "\n\n";
-            ManageDisplayStatisticsClass.processStats(header + result); // Step 6
-            window.close();
+            selectCategory(parkingBox, categoryBox, filterBox, window); // Step 3
         });
 
         VBox layout = new VBox(10, title, parkingBox, categoryBox, filterBox, submit);
@@ -73,7 +37,51 @@ public class ViewStatsScreen {
         window.show();
     }
 
+    public static void showStatisticalCategories(ComboBox<Parking> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox) {
+        List<Parking> parkings = DatabaseManager.loadParkings(); // Assumes XML loading
+        parkingBox.setItems(FXCollections.observableArrayList(parkings));
+        parkingBox.setPromptText("Επιλέξτε πάρκινγκ");
+
+        parkingBox.setConverter(new StringConverter<>() {
+            @Override
+            public String toString(Parking parking) {
+                return parking != null ? parking.getName() : "";
+            }
+
+            @Override
+            public Parking fromString(String string) {
+                return null;
+            }
+        });
+
+        categoryBox.getItems().addAll(DatabaseManager.queryStatisticalCategories());
+        filterBox.getItems().addAll("Ημέρα", "Ώρα", "Μήνας");
+    }
+
+    public static void selectCategory(ComboBox<Parking> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox, Stage window) {
+        Parking selectedParking = parkingBox.getValue();
+        String category = categoryBox.getValue();
+        String filter = filterBox.getValue();
+
+        if (selectedParking == null || category == null || filter == null) {
+            showErrorMessage("Πρέπει να επιλέξετε πάρκινγκ, κατηγορία και φίλτρο.");
+            return;
+        }
+
+        String result = DatabaseManager.queryStatistics(category, filter);
+        if (result == null) {
+            showErrorMessage("Δεν υπάρχουν διαθέσιμα δεδομένα για την επιλογή σας.");
+            return;
+        }
+
+        String header = "Πάρκινγκ: " + selectedParking.getName()
+                + "\nΔιεύθυνση: " + selectedParking.getAddress() + "\n\n";
+
+        ManageDisplayStatisticsClass.processStats(header + result);
+        window.close();
+    }
+
     public static void showErrorMessage(String message) {
-        ErrorScreen.display(message); // Step 5a.2
+        ErrorScreen.display(message); // Alternative flow 1
     }
 }
