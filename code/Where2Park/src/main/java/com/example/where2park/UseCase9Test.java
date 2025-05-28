@@ -12,7 +12,7 @@ public class UseCase9Test extends Application {
     @Override
     public void start(Stage primaryStage) {
         // Load parking data from XML (simulate the system fetching info)
-        var parking = ManageInfoClass.loadParkingData();
+        var parking = ManageInfoClass.searchInfo();
 
         // Open the EditParkingScreen
         EditParkingScreen.display();  // you should pass existing data if needed

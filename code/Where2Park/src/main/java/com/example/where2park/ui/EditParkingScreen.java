@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class EditParkingScreen {
 
     public static void display() {
-        Parking data = ManageInfoClass.loadParkingData();
+        Parking data = ManageInfoClass.searchInfo();
         if (data == null) {
             redoMessage("Αποτυχία φόρτωσης των πληροφοριών.");
             return;
@@ -67,7 +67,7 @@ public class EditParkingScreen {
                 return;
             }
 
-            Parking existing = ManageInfoClass.loadParkingData();
+            Parking existing = ManageInfoClass.searchInfo();
             if (existing == null) {
                 redoMessage("Αποτυχία φόρτωσης των τρεχουσών πληροφοριών.");
                 return;
@@ -83,7 +83,7 @@ public class EditParkingScreen {
                     existing.getCurrentlyAvailable()
             );
 
-            if (ManageInfoClass.saveParkingData(updated)) {
+            if (ManageInfoClass.updateInfo(updated)) {
                 showResult(window); // Step: showResult()
             } else {
                 redoMessage("Αποτυχία αποθήκευσης των πληροφοριών.");

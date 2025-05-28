@@ -11,7 +11,8 @@ import java.io.File;
 public class ManageInfoClass {
     private static final String FILE_PATH = "src/main/data/parking.xml";
 
-    public static Parking loadParkingData() {
+    // searchInfo() - loads current data
+    public static Parking searchInfo() {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(FILE_PATH));
             doc.getDocumentElement().normalize();
@@ -26,14 +27,16 @@ public class ManageInfoClass {
                     Integer.parseInt(getText(doc, "currentlyAvailable"))
             );
         } catch (Exception e) {
-            e.printStackTrace();
+            errorFound("Σφάλμα κατά τη φόρτωση των πληροφοριών: " + e.getMessage());
             return null;
         }
     }
 
-    public static boolean saveParkingData(Parking data) {
+    // updateInfo() - saves modified data
+    public static boolean updateInfo(Parking data) {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(FILE_PATH));
+
             updateText(doc, "name", data.getName());
             updateText(doc, "address", data.getAddress());
             updateText(doc, "tel", data.getTel());
@@ -41,12 +44,21 @@ public class ManageInfoClass {
 
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(new DOMSource(doc), new StreamResult(new File(FILE_PATH)));
+
             return true;
         } catch (Exception e) {
+            errorFound("Αποτυχία αποθήκευσης: " + e.getMessage());
             return false;
         }
     }
 
+    // errorFound() - handles and prints errors (optionally log/alert)
+    private static void errorFound(String message) {
+        System.err.println("[ManageInfoClass] " + message);
+        // Future: log to file or alert UI
+    }
+
+    // Helpers
     private static String getText(Document doc, String tag) {
         return doc.getElementsByTagName(tag).item(0).getTextContent();
     }
@@ -55,4 +67,3 @@ public class ManageInfoClass {
         doc.getElementsByTagName(tag).item(0).setTextContent(newValue);
     }
 }
-

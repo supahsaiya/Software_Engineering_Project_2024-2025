@@ -73,6 +73,12 @@ public class AvailabilityWindow {
         }
     }
 
+    public static void showCapacityMessage(String message) {
+        // A dedicated capacity-related error message display
+        System.err.println("[Capacity Message] " + message);
+    }
+
+
     public static void updateAvailableSpots(Parking parking) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
@@ -97,7 +103,8 @@ public class AvailabilityWindow {
                 showNewAvailableSpots(availability, updated);
             } else {
                 manager.capacityOverflow();
-                showErrorMessage("Cannot exceed capacity of " + parking.getTotalSpots());
+                //showErrorMessage("Cannot exceed capacity of " + parking.getTotalSpots());
+                showCapacityMessage("Cannot exceed capacity of " + parking.getTotalSpots());
             }
         });
 
@@ -115,7 +122,8 @@ public class AvailabilityWindow {
                 showNewAvailableSpots(availability, updated);
             } else {
                 manager.capacityUnderflow();
-                showErrorMessage("Cannot have negative available spots.");
+                //showErrorMessage("Cannot have negative available spots.");
+                showCapacityMessage("Cannot have negative available spots.");
             }
         });
 

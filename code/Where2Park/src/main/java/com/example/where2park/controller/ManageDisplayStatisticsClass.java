@@ -4,7 +4,7 @@ import com.example.where2park.ui.StatsScreen;
 
 public class ManageDisplayStatisticsClass {
 
-    public static void processStats(String data) {
+    public static void processingStats(String data) {
         StatsScreen.display(data); // Step 7
     }
 }

@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- data/parkings.xml --><parkings>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- data/parkings.xml --><parkings>
     <parking>
         <name>OPEN24</name>
         <lat>37.9879611</lat>
         <lon>23.7215891</lon>
         <address>Χίου 2-4, Αθήνα - Μεταξουργείο, 10437, ΑΤΤΙΚΗΣ</address>
-        <tel>2105222889</tel>
-        <totalSpots>55</totalSpots>
+        <tel>2105222888</tel>
+        <totalSpots>50</totalSpots>
         <currentlyAvailable>37</currentlyAvailable>
     </parking>
     <parking>
@@ -132,6 +133,6 @@
         <address>Ευάδνης 12-14, Αθήνα 118 54</address>
         <tel>2103598766</tel>
         <totalSpots>50</totalSpots>
-        <currentlyAvailable>26</currentlyAvailable>
+        <currentlyAvailable>22</currentlyAvailable>
     </parking>
 </parkings>

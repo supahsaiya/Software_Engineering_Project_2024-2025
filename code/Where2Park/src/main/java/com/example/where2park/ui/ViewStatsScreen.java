@@ -77,7 +77,7 @@ public class ViewStatsScreen {
         String header = "Πάρκινγκ: " + selectedParking.getName()
                 + "\nΔιεύθυνση: " + selectedParking.getAddress() + "\n\n";
 
-        ManageDisplayStatisticsClass.processStats(header + result);
+        ManageDisplayStatisticsClass.processingStats(header + result);
         window.close();
     }
 

@@ -14,15 +14,15 @@ public class MainMenu extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.mainStage = primaryStage;
-        display(); // Now matches sequence diagram
+        display(); // Still entry point
     }
 
     public void display() {
         Button editButton = new Button("Επεξεργασία Πληροφοριών Πάρκινγκ");
-        editButton.setOnAction(e -> EditParkingScreen.display());
+        editButton.setOnAction(e -> selectEdit()); // Step now moved
 
         Button statsButton = new Button("Προβολή Στατιστικών");
-        statsButton.setOnAction(e -> selectStatistics()); // Step 1
+        statsButton.setOnAction(e -> selectStatistics());
 
         VBox layout = new VBox(10, editButton, statsButton);
         Scene scene = new Scene(layout, 300, 200);
@@ -31,9 +31,14 @@ public class MainMenu extends Application {
         mainStage.show();
     }
 
+    //Called by edit button — matches diagram
+    public void selectEdit() {
+        EditParkingScreen.display();
+    }
+
     public void selectStatistics() {
         ManageSearchCategoriesClass searchCategories = new ManageSearchCategoriesClass();
-        searchCategories.display(); // Step 2 of Use Case
+        searchCategories.display();
     }
 
     public static void main(String[] args) {
