@@ -95,7 +95,8 @@ public class AvailabilityWindow {
             if (validateAvailabilityUpdate(parking, newValue)) {
                 manager.validationSuccessful();
                 int updated = ParkingSpot.updateTemporarySpotList(parking, newValue);
-                updateAvailabilityInXML(parking.getName(), updated);
+                //updateAvailabilityInXML(parking.getName(), updated);
+
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
             } else {
@@ -114,7 +115,7 @@ public class AvailabilityWindow {
             if (validateAvailabilityUpdate(parking, newValue)) {
                 manager.validationSuccessful();
                 int updated = ParkingSpot.updateTemporarySpotList(parking, newValue);
-                updateAvailabilityInXML(parking.getName(), updated);
+                //updateAvailabilityInXML(parking.getName(), updated);
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
             } else {
@@ -146,7 +147,7 @@ public class AvailabilityWindow {
         label.setText("Currently Available: " + updated);
     }
 
-
+    /*
     private static void updateAvailabilityInXML(String parkingName, int newAvailable) {
         try {
             File file = new File("src/main/data/parking.xml");
@@ -170,6 +171,8 @@ public class AvailabilityWindow {
             e.printStackTrace();
         }
     }
+
+     */
     public static void showCapacityMessage(String message) {
         // A dedicated capacity-related error message display
         System.err.println("[Capacity Message] " + message);
@@ -180,10 +183,11 @@ public class AvailabilityWindow {
         System.out.println(" validateAvailabilityUpdate() called.");
     }
      */
+    /*
     public static void showErrorMessage(String message) {
         // You can replace this with a pop-up if needed
         System.err.println("[Error] " + message);
     }
-
+*/
 
 }

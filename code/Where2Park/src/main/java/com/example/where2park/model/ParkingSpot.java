@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.w3c.dom.*;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -13,9 +17,34 @@ import org.w3c.dom.NodeList;
 public class ParkingSpot {
 
 
-    // Update the in-memory availability
     public static int updateTemporarySpotList(Parking parking, int newAvailable) {
+        // 1. Update in-memory object
         parking.setCurrentlyAvailable(newAvailable);
+
+        // 2. Update XML persistence
+        try {
+            File file = new File("src/main/data/parking.xml");
+            Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
+            NodeList parkings = doc.getElementsByTagName("parking");
+
+            for (int i = 0; i < parkings.getLength(); i++) {
+                Element el = (Element) parkings.item(i);
+                String name = el.getElementsByTagName("name").item(0).getTextContent();
+
+                if (name.equals(parking.getName())) {
+                    el.getElementsByTagName("currentlyAvailable").item(0).setTextContent(String.valueOf(newAvailable));
+                    break;
+                }
+            }
+
+            Transformer tf = TransformerFactory.newInstance().newTransformer();
+            tf.setOutputProperty(OutputKeys.INDENT, "yes");
+            tf.transform(new DOMSource(doc), new StreamResult(file));
+
+        } catch (Exception e) {
+            System.err.println("[ParkingSpot] Failed to persist availability: " + e.getMessage());
+        }
+
         return newAvailable;
     }
 
