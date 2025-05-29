@@ -6,7 +6,6 @@ public class Employee {
     public Employee(String employeeId, String name, String role) {
         this.employeeId = employeeId;
         this.name = name;
-        this.role = role;
         this.homeScreen = new EmployeeHomeScreen();
     }
 
