@@ -17,7 +17,7 @@ public class ManageReviewClass {
     }
 
     // Start the review process
-    public void start() {
+    public void create() {
         ParkingReviewForm.display(parking, booking, userId);
     }
 

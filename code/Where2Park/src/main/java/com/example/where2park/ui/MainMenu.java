@@ -1,5 +1,6 @@
 package com.example.where2park.ui;
 
+import com.example.where2park.controller.ManageReviewClass;
 import com.example.where2park.controller.ManageSearchCategoriesClass;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -39,6 +40,9 @@ public class MainMenu extends Application {
     public void selectStatistics() {
         ManageSearchCategoriesClass searchCategories = new ManageSearchCategoriesClass();
         searchCategories.create();
+    }
+    public void selectReview() {
+        System.out.println(" Review Selected.");
     }
 
     public static void main(String[] args) {

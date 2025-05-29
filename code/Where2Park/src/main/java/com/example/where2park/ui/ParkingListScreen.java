@@ -8,10 +8,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
-
 import java.util.List;
 
 public class ParkingListScreen {
+
     public static void display(List<Booking> bookings, ManageUserBookingClass controller, String message) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
@@ -23,10 +23,7 @@ public class ParkingListScreen {
         } else {
             for (Booking spot : bookings) {
                 Button btn = new Button("Select " + spot);
-                btn.setOnAction(e -> {
-                    stage.close();
-                    controller.onSelectBooking(spot.getSpot(), spot.getDate()); // fill with actual date info
-                });
+                btn.setOnAction(e -> selectParkingSpot(stage, controller, spot));
                 root.getChildren().add(btn);
             }
         }
@@ -36,5 +33,18 @@ public class ParkingListScreen {
         stage.show();
     }
 
+    private static void selectParkingSpot(Stage stage, ManageUserBookingClass controller, Booking spot) {
+        stage.close();
+        controller.onSelectBooking(spot.getSpot(), spot.getDate());
+    }
 
+    public static void showNoBookings() {
+        System.out.println("No bookings available for review.");
+        // Optionally, show an alert here if you want:
+        // Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        // alert.setTitle("No Bookings");
+        // alert.setHeaderText(null);
+        // alert.setContentText("You have no bookings eligible for review.");
+        // alert.showAndWait();
+    }
 }

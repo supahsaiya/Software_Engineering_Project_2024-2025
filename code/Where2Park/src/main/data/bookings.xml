@@ -47,4 +47,28 @@
         <parkingSpot>O Platanos</parkingSpot>
         <date>2025-05-26</date>
     </booking>
+    <booking>
+        <id>102</id>
+        <userId>1</userId>
+        <parkingSpot>O Platanos</parkingSpot>
+        <date>2025-05-27</date>
+    </booking>
+    <booking>
+        <id>102</id>
+        <userId>1</userId>
+        <parkingSpot>Plaka Old Town Parking</parkingSpot>
+        <date>2025-05-26</date>
+    </booking>
+    <booking>
+        <id>102</id>
+        <userId>1</userId>
+        <parkingSpot>O Platanos</parkingSpot>
+        <date>2025-05-22</date>
+    </booking>
+    <booking>
+        <id>101</id>
+        <userId>1</userId>
+        <parkingSpot>Tetris Parking</parkingSpot>
+        <date>2025-05-18</date>
+    </booking>
 </bookings>

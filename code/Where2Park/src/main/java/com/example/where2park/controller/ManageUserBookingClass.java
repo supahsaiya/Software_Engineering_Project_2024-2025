@@ -20,7 +20,7 @@ public class ManageUserBookingClass {
         List<Booking> bookings = DatabaseManager.queryClientBooking(userId);
 
         if (bookings.isEmpty()) {
-            showNoBookings();
+            ParkingListScreen.showNoBookings();
             ParkingListScreen.display(bookings, this, "No bookings available for review.");
             UserHomeScreen.display(userId); // Redirect back to client home
         } else {
@@ -30,18 +30,10 @@ public class ManageUserBookingClass {
 
 
     public void onSelectBooking(String spot, String date) {
-        new ManageReviewClass(userId, spot, date).start();
+        new ManageReviewClass(userId, spot, date).create();
     }
 
-    public void showNoBookings() {
-        System.out.println("No bookings available for review.");
-        // Optionally, show an alert here if you want:
-        // Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        // alert.setTitle("No Bookings");
-        // alert.setHeaderText(null);
-        // alert.setContentText("You have no bookings eligible for review.");
-        // alert.showAndWait();
-    }
+
 
 }
 
