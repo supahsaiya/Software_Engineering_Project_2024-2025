@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ReviewConfirmScreen {
+
     public static void display(Parking parking, Booking booking, int userId, int stars, String reviewText) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
@@ -23,31 +24,32 @@ public class ReviewConfirmScreen {
 
         Button confirm = new Button("Confirm");
         confirm.setOnAction(e -> {
-            ManageReviewClass manageReview = new ManageReviewClass(userId, parking.getName(), booking.getDate());
-
-            if (!ParkingReviewForm.validateStars(String.valueOf(stars))) {
-                manageReview.errorStars();
-                stage.close();
-                return;
-            }
-
-            if (!ParkingReviewForm.validateText(reviewText)) {
-                manageReview.errorText();
-                stage.close();
-                return;
-            }
-
-            manageReview.confirmationDone(parking, booking, stars, reviewText);
+            confirmReview(parking, booking, userId, stars, reviewText);
             stage.close();
         });
-
 
         root.getChildren().addAll(summary, confirm);
         stage.setScene(new Scene(root, 400, 300));
         stage.setTitle("Confirm Review");
         stage.show();
     }
+
+    /**
+     * Validates and submits the review data.
+     */
+    public static void confirmReview(Parking parking, Booking booking, int userId, int stars, String reviewText) {
+        ManageReviewClass manageReview = new ManageReviewClass(userId, parking.getName(), booking.getDate());
+
+        if (!ParkingReviewForm.validateStars(String.valueOf(stars))) {
+            manageReview.errorStars();
+            return;
+        }
+
+        if (!ParkingReviewForm.validateText(reviewText)) {
+            manageReview.errorText();
+            return;
+        }
+
+        manageReview.confirmationDone(parking, booking, stars, reviewText);
+    }
 }
-
-
-

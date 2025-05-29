@@ -17,7 +17,7 @@ public class ManageUserBookingClass {
     }
 
     public void start() {
-        List<Booking> bookings = DatabaseManager.queryUserBookings(userId);
+        List<Booking> bookings = DatabaseManager.queryClientBooking(userId);
 
         if (bookings.isEmpty()) {
             showNoBookings();

@@ -30,6 +30,7 @@ public class Parking {
         this.currentlyAvailable = currentlyAvailable;
     }
 
+    /*
     public static int fetchCurrentAvailability(String parkingName) {
         try {
             File file = new File("src/main/data/parkings.xml");
@@ -53,12 +54,13 @@ public class Parking {
         }
         return -1; // Error or not found
     }
-
+    */
+    /*
     public int updateTemporarySpotsList(int newAvailable) {
         this.setCurrentlyAvailable(newAvailable);
         return newAvailable;
     }
-
+    */
 
     public String getName() { return name; }
     public double getLat() { return lat; }
@@ -72,6 +74,14 @@ public class Parking {
     public void setCurrentlyAvailable(int currentlyAvailable) {
         this.currentlyAvailable = currentlyAvailable;
     }
+
+    public void updateInfo() {
+
+        System.out.println("updateInfo() called");
+    }
+
+
+     /*
 
     //HELPER CLASSES
 
@@ -124,5 +134,5 @@ public class Parking {
         }
         return parkingNames;
     }
-
+*/
 }

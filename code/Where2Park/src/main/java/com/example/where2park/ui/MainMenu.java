@@ -38,7 +38,7 @@ public class MainMenu extends Application {
 
     public void selectStatistics() {
         ManageSearchCategoriesClass searchCategories = new ManageSearchCategoriesClass();
-        searchCategories.display();
+        searchCategories.create();
     }
 
     public static void main(String[] args) {

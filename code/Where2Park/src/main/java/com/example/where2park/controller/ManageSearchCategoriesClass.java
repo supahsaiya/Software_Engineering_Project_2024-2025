@@ -4,7 +4,7 @@ import com.example.where2park.ui.ViewStatsScreen;
 
 public class ManageSearchCategoriesClass {
 
-    public void display() {
+    public void create() {
         ViewStatsScreen.display(); // Opens the screen to select stats
     }
 }

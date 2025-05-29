@@ -1,67 +1,217 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <reviews>
-    
+          
+  
+  
+  
   <review>
-        
+                    
+    
+    
+    
     <userId>1</userId>
-        
+                    
+    
+    
+    
     <parkingName>Tetris Parking</parkingName>
-        
+                    
+    
+    
+    
     <bookingDate>2025-05-20</bookingDate>
-        
+                    
+    
+    
+    
     <stars>5</stars>
-        
+                    
+    
+    
+    
     <text>excellent service!</text>
-      
+                  
+  
+  
+  
   </review>
-    
+          
+  
+  
+  
   <review>
-        
+                    
+    
+    
+    
     <userId>1</userId>
-        
+                    
+    
+    
+    
     <parkingName>Tetris Parking</parkingName>
-        
+                    
+    
+    
+    
     <bookingDate>2025-05-21</bookingDate>
-        
+                    
+    
+    
+    
     <stars>5</stars>
-        
+                    
+    
+    
+    
     <text>very nice</text>
-      
+                  
+  
+  
+  
   </review>
-    
+          
+  
+  
+  
   <review>
-        
+                    
+    
+    
+    
     <userId>1</userId>
-        
+                    
+    
+    
+    
     <parkingName>Plaka Old Town Parking</parkingName>
-        
+                    
+    
+    
+    
     <bookingDate>2025-05-22</bookingDate>
-        
+                    
+    
+    
+    
     <stars>3</stars>
-        
+                    
+    
+    
+    
     <text>ok</text>
+                  
+  
+  
+  
+  </review>
+          
+  
+  
+  
+  <review>
+                    
+    
+    
+    
+    <parkingName>O Platanos</parkingName>
+                    
+    
+    
+    
+    <userId>1</userId>
+                    
+    
+    
+    
+    <bookingDate>2025-05-24</bookingDate>
+                    
+    
+    
+    
+    <stars>5</stars>
+                    
+    
+    
+    
+    <text>nice parking spot!</text>
+                  
+  
+  
+  
+  </review>
+        
+  
+  
+  
+  <review>
+                
+    
+    
+    <parkingName>Plaka Old Town Parking</parkingName>
+                
+    
+    
+    <userId>1</userId>
+                
+    
+    
+    <bookingDate>2025-05-24</bookingDate>
+                
+    
+    
+    <stars>4</stars>
+                
+    
+    
+    <text>ok service</text>
+              
+  
+  
+  </review>
       
+  
+  
+  <review>
+            
+    
+    <parkingName>Plaka Old Town Parking</parkingName>
+            
+    
+    <userId>1</userId>
+            
+    
+    <bookingDate>2025-05-27</bookingDate>
+            
+    
+    <stars>5</stars>
+            
+    
+    <text>incredible would park here again</text>
+          
+  
   </review>
     
+  
   <review>
         
     <parkingName>O Platanos</parkingName>
         
     <userId>1</userId>
         
-    <bookingDate>2025-05-24</bookingDate>
+    <bookingDate>2025-05-28</bookingDate>
         
     <stars>5</stars>
         
-    <text>nice parking spot!</text>
+    <text>good service</text>
       
   </review>
   
   <review>
-    <parkingName>Plaka Old Town Parking</parkingName>
+    <parkingName>O Platanos</parkingName>
     <userId>1</userId>
-    <bookingDate>2025-05-24</bookingDate>
+    <bookingDate>2025-05-26</bookingDate>
     <stars>4</stars>
-    <text>ok service</text>
+    <text>good</text>
   </review>
 </reviews>

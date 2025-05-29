@@ -214,7 +214,7 @@ public class DatabaseManager {
         }
     }
 
-    public static List<Booking> queryUserBookings(int userId) {
+    public static List<Booking> queryClientBooking(int userId) {
         List<Booking> bookings = new ArrayList<>();
 
         try {
@@ -273,6 +273,25 @@ public class DatabaseManager {
         return sb.toString();
     }
 
+    public static String querySearch(Document doc, String tag) {
+        try {
+            return doc.getElementsByTagName(tag).item(0).getTextContent();
+        } catch (Exception e) {
+            System.err.println("[DatabaseManager] Error in querySearch(): " + e.getMessage());
+            return null;
+        }
+    }
+
+    public static void queryUpdate(Document doc, String tag, String newValue) {
+        try {
+            doc.getElementsByTagName(tag).item(0).setTextContent(newValue);
+        } catch (Exception e) {
+            System.err.println("[DatabaseManager] Error in queryUpdate(): " + e.getMessage());
+        }
+    }
+
+
+    /*
     public static void saveReview(String parkingName, int userId, String bookingDate, int stars, String text) {
         try {
             File file = new File("src/main/data/reviews.xml");
@@ -328,6 +347,7 @@ public class DatabaseManager {
         }
     }
 
+    */
 
     public static boolean hasReview(int userId, String parkingName, String date) {
         try {

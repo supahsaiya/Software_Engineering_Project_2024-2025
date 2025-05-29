@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- data/parkings.xml --><parkings>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- data/parkings.xml --><parkings>
     <parking>
         <name>OPEN24</name>
         <lat>37.9879611</lat>
@@ -133,6 +132,6 @@
         <address>Ευάδνης 12-14, Αθήνα 118 54</address>
         <tel>2103598766</tel>
         <totalSpots>50</totalSpots>
-        <currentlyAvailable>22</currentlyAvailable>
+        <currentlyAvailable>23</currentlyAvailable>
     </parking>
 </parkings>

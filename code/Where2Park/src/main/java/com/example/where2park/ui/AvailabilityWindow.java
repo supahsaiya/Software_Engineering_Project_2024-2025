@@ -2,6 +2,7 @@ package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageAvailabilityClass;
 import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingSpot;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -73,10 +74,6 @@ public class AvailabilityWindow {
         }
     }
 
-    public static void showCapacityMessage(String message) {
-        // A dedicated capacity-related error message display
-        System.err.println("[Capacity Message] " + message);
-    }
 
 
     public static void updateAvailableSpots(Parking parking) {
@@ -97,7 +94,7 @@ public class AvailabilityWindow {
 
             if (validateAvailabilityUpdate(parking, newValue)) {
                 manager.validationSuccessful();
-                int updated = parking.updateTemporarySpotsList(newValue);
+                int updated = ParkingSpot.updateTemporarySpotList(parking, newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
@@ -116,7 +113,7 @@ public class AvailabilityWindow {
 
             if (validateAvailabilityUpdate(parking, newValue)) {
                 manager.validationSuccessful();
-                int updated = parking.updateTemporarySpotsList(newValue);
+                int updated = ParkingSpot.updateTemporarySpotList(parking, newValue);
                 updateAvailabilityInXML(parking.getName(), updated);
                 showConfirmationMessage("Updated successfully.");
                 showNewAvailableSpots(availability, updated);
@@ -172,6 +169,10 @@ public class AvailabilityWindow {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static void showCapacityMessage(String message) {
+        // A dedicated capacity-related error message display
+        System.err.println("[Capacity Message] " + message);
     }
     /*
     public static void validateAvailabilityUpdate() {
