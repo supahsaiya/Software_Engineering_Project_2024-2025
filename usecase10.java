@@ -189,4 +189,57 @@ public class ReservationsListScreen {
             System.out.println("Κράτηση: " + r.getId() + " - " + r.getCustomerName());
         }
     }
+    public class ParkingSpot {
+    private String id;
+    private String location;
+    private boolean isReserved;
+    private int queuePosition; // νέα ιδιότητα
+
+    public ParkingSpot(String id, String location) {
+        this.id = id;
+        this.location = location;
+        this.isReserved = false;
+        this.queuePosition = 0; // default χωρίς προτεραιότητα
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public boolean isReserved() {
+        return isReserved;
+    }
+
+    public int getQueuePosition() {
+        return queuePosition;
+    }
+
+    public void reserve() {
+        this.isReserved = true;
+        System.out.println("Η θέση " + id + " έχει κρατηθεί.");
+    }
+
+    public void release() {
+        this.isReserved = false;
+        System.out.println("Η θέση " + id + " αποδεσμεύθηκε.");
+    }
+
+    public void decreasePosition() {
+        if (queuePosition > 0) {
+            queuePosition--;
+            System.out.println("Η θέση " + id + " μετακινήθηκε προς τα πάνω στη λίστα (νέα θέση: " + queuePosition + ")");
+        } else {
+            System.out.println("Η θέση " + id + " δεν έχει προτεραιότητα να μειωθεί.");
+        }
+    }
+
+    public void setQueuePosition(int position) {
+        this.queuePosition = Math.max(position, 0);
+    }
 }
+}
+
