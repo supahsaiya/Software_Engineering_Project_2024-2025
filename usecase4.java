@@ -10,7 +10,7 @@ public class Client {
   }
 
 public class PaymentMethodsScreen {
-    private List<String> availableMethods; // π.χ. Visa, PayPal, MasterCard
+    private List<String> availableMethods; 
     private ManageCardsClass manageCards;
 
     public PaymentMethodsScreen() {
@@ -217,4 +217,29 @@ public class ErrorMessageScreen {
     public void showError() {
         System.out.println("ErrorMessageScreen: " + errorMessage);
     }
+    import java.util.List;
+import java.util.Arrays;
+
+public class SelectionCardScreen {
+    private List<String> availableCards;
+
+public SelectionCardScreen() {
+        // Προσομοίωση διαθέσιμων καρτών
+        this.availableCards = Arrays.asList("Visa **** 1234", "Mastercard **** 5678");
+    }
+
+    public void display() {
+        System.out.println("SelectionCardScreen: Displaying available cards for selection...");
+        for (String card : availableCards) {
+            System.out.println(" - " + card);
+        }
+    }
+
+    public String selectCard() {
+        System.out.println("SelectionCardScreen: Card selected.");
+        // Σε κανονική υλοποίηση, εδώ θα υπήρχε επιλογή από UI ή input
+        return availableCards.get(0); // επιστρέφει την πρώτη κάρτα για προσομοίωση
+    }
+ }
+
 }
