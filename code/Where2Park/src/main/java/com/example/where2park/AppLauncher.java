@@ -15,7 +15,7 @@ public class AppLauncher extends Application {
         ManageLocationClass manager = new ManageLocationClass();
 
         // Step 1: Confirm location (this blocks)
-        Location confirmed = manager.sendLocationForConfirmation();
+        Location confirmed = manager.sendLocation();
 
         if (confirmed != null) {
             System.out.println("Confirmed Location: " + confirmed);

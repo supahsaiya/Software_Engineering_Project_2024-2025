@@ -29,7 +29,7 @@ public class ManageLocationClass {
 
 
     // renamed findLocation to getLocation for clarity
-    public Location getLocation() {
+    public Location findLocation() {
 
         // Simulate 5% chance of location services being disabled
         if (Math.random() < 0.05) {
@@ -43,8 +43,8 @@ public class ManageLocationClass {
     }
 
 
-    public Location sendLocationForConfirmation() {
-        Location detectedLocation = getLocation();
+    public Location sendLocation() {
+        Location detectedLocation = findLocation();
         if (detectedLocation == null) {
             System.out.println("Failed to detect location.");
             return null;
