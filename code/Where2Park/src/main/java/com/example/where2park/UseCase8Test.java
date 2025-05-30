@@ -20,7 +20,7 @@ public class UseCase8Test extends Application {
             // Also open the window to update availability
             AvailabilityWindow.updateAvailableSpots(parking);
         } else {
-            System.out.println("❌ Parking not found: " + parkingName);
+            System.out.println(" Parking not found: " + parkingName);
         }
     }
 

@@ -77,4 +77,16 @@
         <parkingSpot>Plaka Old Town Parking</parkingSpot>
         <date>2025-05-28</date>
     </booking>
+    <booking>
+        <id>101</id>
+        <userId>1</userId>
+        <parkingSpot>Tetris Parking</parkingSpot>
+        <date>2025-04-20</date>
+    </booking>
+    <booking>
+        <id>102</id>
+        <userId>1</userId>
+        <parkingSpot>Plaka Old Town Parking</parkingSpot>
+        <date>2025-04-25</date>
+    </booking>
 </bookings>

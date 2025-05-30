@@ -20,12 +20,16 @@ public class AppLauncher extends Application {
         if (confirmed != null) {
             System.out.println("Confirmed Location: " + confirmed);
             manager.processUserLocation(confirmed);  // continue with your app flow
+
+            // ✅ Launch ClientHomeScreen
+            int userId = 1; // or dynamically fetch this
+            com.example.where2park.ui.ClientHomeScreen.display(userId);
         } else {
             System.out.println("No location confirmed. Stopping or prompt manual input.");
-            // Optionally close app or show manual input UI here
-            primaryStage.close();
+            primaryStage.close(); // or launch fallback UI
         }
     }
+
     public static void main(String[] args) {
         launch(args);  // Starts JavaFX Application Thread
     }

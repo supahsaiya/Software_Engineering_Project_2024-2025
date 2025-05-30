@@ -34,7 +34,7 @@ public class XMLCleaner {
 
     // For manual testing
     public static void main(String[] args) {
-        String xmlPath = "src/main/data/users.xml"; // Update path if needed
+        String xmlPath = "src/main/data/parking.xml"; // Update path if needed
         removeBlankLines(xmlPath);
     }
 }

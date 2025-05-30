@@ -231,7 +231,7 @@ public class DataStorageManager {
 
 
                 if (!userFound) {
-                    System.out.println("⚠️ User ID not found.");
+                    System.out.println(" User ID not found.");
                 }
 
             } else {
@@ -575,8 +575,8 @@ public class DataStorageManager {
                 double lon = Double.parseDouble(e.getElementsByTagName("lon").item(0).getTextContent());
                 String address = e.getElementsByTagName("address").item(0).getTextContent();
                 String tel = e.getElementsByTagName("tel").item(0).getTextContent();
-                int total = Integer.parseInt(e.getElementsByTagName("capacity").item(0).getTextContent());
-                int available = Integer.parseInt(e.getElementsByTagName("available").item(0).getTextContent());
+                int total = Integer.parseInt(e.getElementsByTagName("totalSpots").item(0).getTextContent());
+                int available = Integer.parseInt(e.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
 
                 lots.add(new ParkingLot(name, lat, lon, address, tel, total, available));
             }
