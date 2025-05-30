@@ -3,9 +3,7 @@ package com.example.where2park.model;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.w3c.dom.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -17,7 +15,7 @@ import org.w3c.dom.NodeList;
 public class ParkingSpot {
 
 
-    public static int updateTemporarySpotList(Parking parking, int newAvailable) {
+    public static int updateTemporarySpotList(ParkingLot parking, int newAvailable) {
         // 1. Update in-memory object
         parking.setCurrentlyAvailable(newAvailable);
 
@@ -49,7 +47,7 @@ public class ParkingSpot {
     }
 
     // Load parking by name from XML
-    public static Parking loadFromXML(String parkingName) {
+    public static ParkingLot loadFromXML(String parkingName) {
         try {
             File file = new File("src/main/data/parking.xml");
             if (!file.exists()) return null;
@@ -69,7 +67,7 @@ public class ParkingSpot {
                     int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
                     int currentlyAvailable = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
 
-                    return new Parking(name, lat, lon, address, tel, totalSpots, currentlyAvailable);
+                    return new ParkingLot(name, lat, lon, address, tel, totalSpots, currentlyAvailable);
                 }
             }
         } catch (Exception e) {

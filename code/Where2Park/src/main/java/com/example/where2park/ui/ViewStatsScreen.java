@@ -1,7 +1,7 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageDisplayStatisticsClass;
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import com.example.where2park.service.DatabaseManager;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
@@ -20,7 +20,7 @@ public class ViewStatsScreen {
 
         Label title = new Label("Επιλέξτε Πάρκινγκ, Κατηγορία και Φίλτρο Χρόνου:");
 
-        ComboBox<Parking> parkingBox = new ComboBox<>();
+        ComboBox<ParkingLot> parkingBox = new ComboBox<>();
         ComboBox<String> categoryBox = new ComboBox<>();
         ComboBox<String> filterBox = new ComboBox<>();
 
@@ -37,19 +37,19 @@ public class ViewStatsScreen {
         window.show();
     }
 
-    public static void showStatisticalCategories(ComboBox<Parking> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox) {
-        List<Parking> parkings = DatabaseManager.loadParkings(); // Assumes XML loading
+    public static void showStatisticalCategories(ComboBox<ParkingLot> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox) {
+        List<ParkingLot> parkings = DatabaseManager.loadParkings(); // Assumes XML loading
         parkingBox.setItems(FXCollections.observableArrayList(parkings));
         parkingBox.setPromptText("Επιλέξτε πάρκινγκ");
 
         parkingBox.setConverter(new StringConverter<>() {
             @Override
-            public String toString(Parking parking) {
+            public String toString(ParkingLot parking) {
                 return parking != null ? parking.getName() : "";
             }
 
             @Override
-            public Parking fromString(String string) {
+            public ParkingLot fromString(String string) {
                 return null;
             }
         });
@@ -58,8 +58,8 @@ public class ViewStatsScreen {
         filterBox.getItems().addAll("Ημέρα", "Ώρα", "Μήνας");
     }
 
-    public static void selectCategory(ComboBox<Parking> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox, Stage window) {
-        Parking selectedParking = parkingBox.getValue();
+    public static void selectCategory(ComboBox<ParkingLot> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox, Stage window) {
+        ParkingLot selectedParking = parkingBox.getValue();
         String category = categoryBox.getValue();
         String filter = filterBox.getValue();
 

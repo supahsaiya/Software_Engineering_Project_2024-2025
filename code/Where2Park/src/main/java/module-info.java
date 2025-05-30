@@ -14,4 +14,6 @@ module com.example.where2park {
 
     // export other packages if needed, e.g. service
     exports com.example.where2park.service;
+    opens com.example.where2park.ui to javafx.fxml;
+    exports com.example.where2park.controller;
 }

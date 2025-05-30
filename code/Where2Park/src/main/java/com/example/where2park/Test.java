@@ -1,6 +1,6 @@
 package com.example.where2park;
 
-import com.example.where2park.controller.ManageUserBookingClass;
+import com.example.where2park.controller.ManageClientBookingsClass;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,7 +14,7 @@ public class Test extends Application {
         int userId = 1;
 
         // Simulate clicking the "Review" button
-        ManageUserBookingClass controller = new ManageUserBookingClass(userId);
+        ManageClientBookingsClass controller = new ManageClientBookingsClass(userId);
         controller.start();  // This will call queryUserBookings() and open ParkingListScreen
     }
 

@@ -4,7 +4,7 @@ import com.example.where2park.model.Client;
 import com.example.where2park.model.Location;
 import com.example.where2park.model.Booking;
 
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import java.io.File;
@@ -374,7 +374,7 @@ public class DatabaseManager {
         return false;
     }
 
-    public static Parking getParkingByName(String name) {
+    public static ParkingLot getParkingByName(String name) {
         try {
             File file = new File("src/main/data/parking.xml");
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(file);
@@ -393,7 +393,7 @@ public class DatabaseManager {
                     int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
                     int currentlyAvailable = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
 
-                    return new Parking(pName, lat, lon, address, tel, totalSpots, currentlyAvailable);
+                    return new ParkingLot(pName, lat, lon, address, tel, totalSpots, currentlyAvailable);
                 }
 
             }
@@ -426,8 +426,8 @@ public class DatabaseManager {
 
     }
 
-    public static List<Parking> loadParkings() {
-        List<Parking> parkingList = new ArrayList<>();
+    public static List<ParkingLot> loadParkings() {
+        List<ParkingLot> parkingList = new ArrayList<>();
         try {
             File file = new File("src/main/data/parking.xml");
             if (!file.exists()) return parkingList;
@@ -444,7 +444,7 @@ public class DatabaseManager {
                 int available = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
                 double lat = 0.0, lon = 0.0; // You can extract from XML if needed
 
-                Parking p = new Parking(name, lat, lon, address, tel, totalSpots, available);
+                ParkingLot p = new ParkingLot(name, lat, lon, address, tel, totalSpots, available);
                 parkingList.add(p);
             }
         } catch (Exception e) {

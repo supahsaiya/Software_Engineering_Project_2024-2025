@@ -1,17 +1,7 @@
 package com.example.where2park.model;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-
-public class Parking {
+public class ParkingLot {
     private String name;
     private double lat;
     private double lon;
@@ -20,7 +10,7 @@ public class Parking {
     private int totalSpots;
     private int currentlyAvailable;
 
-    public Parking(String name, double lat, double lon, String address, String tel, int totalSpots,int currentlyAvailable ) {
+    public ParkingLot(String name, double lat, double lon, String address, String tel, int totalSpots, int currentlyAvailable ) {
         this.name = name;
         this.lat = lat;
         this.lon = lon;

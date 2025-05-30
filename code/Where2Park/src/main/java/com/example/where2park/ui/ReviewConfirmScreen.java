@@ -2,7 +2,7 @@ package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageReviewClass;
 import com.example.where2park.model.Booking;
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 public class ReviewConfirmScreen {
 
-    public static void display(Parking parking, Booking booking, int userId, int stars, String reviewText) {
+    public static void display(ParkingLot parking, Booking booking, int userId, int stars, String reviewText) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20");
@@ -37,7 +37,7 @@ public class ReviewConfirmScreen {
     /**
      * Validates and submits the review data.
      */
-    public static void confirmReview(Parking parking, Booking booking, int userId, int stars, String reviewText) {
+    public static void confirmReview(ParkingLot parking, Booking booking, int userId, int stars, String reviewText) {
         ManageReviewClass manageReview = new ManageReviewClass(userId, parking.getName(), booking.getDate());
 
         if (!ParkingReviewForm.validateStars(String.valueOf(stars))) {

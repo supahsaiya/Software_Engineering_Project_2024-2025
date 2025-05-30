@@ -1,27 +1,13 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageAvailabilityClass;
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import com.example.where2park.model.ParkingSpot;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import java.io.File;
 
 
 public class AvailabilityWindow {
@@ -34,7 +20,7 @@ public class AvailabilityWindow {
     /**
      * Displays the Availability Window for a given parking object.
      */
-    public static void display(Parking parking) {
+    public static void display(ParkingLot parking) {
         Stage stage = new Stage();
         VBox root = new VBox(15);
         root.setStyle("-fx-padding: 20; -fx-alignment: center;");
@@ -59,7 +45,7 @@ public class AvailabilityWindow {
     /**
      * Displays the number of currently available spots.
      */
-    public static void showCurrentAvailability(Parking parking) {
+    public static void showCurrentAvailability(ParkingLot parking) {
         if (currentAvailabilityLabel != null) {
             currentAvailabilityLabel.setText("Currently Available Spots: " + parking.getCurrentlyAvailable());
         }
@@ -68,7 +54,7 @@ public class AvailabilityWindow {
     /**
      * Displays the total number of parking spots.
      */
-    public static void showAvailableSpots(Parking parking) {
+    public static void showAvailableSpots(ParkingLot parking) {
         if (totalSpotsLabel != null) {
             totalSpotsLabel.setText("Total Spots: " + parking.getTotalSpots());
         }
@@ -76,7 +62,7 @@ public class AvailabilityWindow {
 
 
 
-    public static void updateAvailableSpots(Parking parking) {
+    public static void updateAvailableSpots(ParkingLot parking) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20; -fx-alignment: center;");
@@ -135,7 +121,7 @@ public class AvailabilityWindow {
     }
 
 
-    private static boolean validateAvailabilityUpdate(Parking parking, int newValue) {
+    private static boolean validateAvailabilityUpdate(ParkingLot parking, int newValue) {
         return newValue >= 0 && newValue <= parking.getTotalSpots();
     }
     public static void showConfirmationMessage(String message) {

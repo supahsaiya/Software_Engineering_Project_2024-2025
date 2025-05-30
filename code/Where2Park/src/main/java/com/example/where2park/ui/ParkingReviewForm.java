@@ -1,7 +1,7 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.model.Booking;
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import com.example.where2park.controller.ManageReviewClass;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,12 +11,12 @@ import javafx.stage.Stage;
 public class ParkingReviewForm {
 
     // Overloaded entry method
-    public static void display(Parking parking, Booking booking, int userId) {
+    public static void display(ParkingLot parking, Booking booking, int userId) {
         display(parking, booking, userId, ""); // Delegate to main display
     }
 
     // Main display method
-    public static void display(Parking parking, Booking booking, int userId, String errorMessage) {
+    public static void display(ParkingLot parking, Booking booking, int userId, String errorMessage) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20");
@@ -65,7 +65,7 @@ public class ParkingReviewForm {
     }
 
     // ✅ New method: submit review
-    private static Button submitReview(Stage stage, Parking parking, Booking booking, int userId, TextArea reviewText, TextField starInput) {
+    private static Button submitReview(Stage stage, ParkingLot parking, Booking booking, int userId, TextArea reviewText, TextField starInput) {
         Button submit = new Button("Submit Review");
 
         submit.setOnAction(e -> {

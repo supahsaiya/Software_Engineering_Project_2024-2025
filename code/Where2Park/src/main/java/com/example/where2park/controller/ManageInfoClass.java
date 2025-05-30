@@ -1,6 +1,6 @@
 package com.example.where2park.controller;
 
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import com.example.where2park.service.DatabaseManager;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
@@ -13,12 +13,12 @@ public class ManageInfoClass {
     private static final String FILE_PATH = "src/main/data/parking.xml";
 
     // searchInfo() - loads current data
-    public static Parking searchInfo() {
+    public static ParkingLot searchInfo() {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(FILE_PATH));
             doc.getDocumentElement().normalize();
 
-            return new Parking(
+            return new ParkingLot(
                     DatabaseManager.querySearch(doc, "name"),
                     Double.parseDouble(DatabaseManager.querySearch(doc, "lat")),
                     Double.parseDouble(DatabaseManager.querySearch(doc, "lon")),
@@ -35,7 +35,7 @@ public class ManageInfoClass {
 
 
     // updateInfo() - saves modified data
-    public static boolean updateInfo(Parking data) {
+    public static boolean updateInfo(ParkingLot data) {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(FILE_PATH));
 

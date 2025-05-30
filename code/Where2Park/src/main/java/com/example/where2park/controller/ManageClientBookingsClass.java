@@ -4,15 +4,15 @@ package com.example.where2park.controller;
 import com.example.where2park.model.Location;
 import com.example.where2park.model.Booking;
 import com.example.where2park.ui.ParkingListScreen;
-import com.example.where2park.ui.UserHomeScreen;
+import com.example.where2park.ui.ClientHomeScreen;
 import com.example.where2park.service.DatabaseManager;
 import com.example.where2park.controller.ManageReviewClass;
 import java.util.List;
 
-public class ManageUserBookingClass {
+public class ManageClientBookingsClass {
     private int userId;
 
-    public ManageUserBookingClass(int userId) {
+    public ManageClientBookingsClass(int userId) {
         this.userId = userId;
     }
 
@@ -22,7 +22,7 @@ public class ManageUserBookingClass {
         if (bookings.isEmpty()) {
             ParkingListScreen.showNoBookings();
             ParkingListScreen.display(bookings, this, "No bookings available for review.");
-            UserHomeScreen.display(userId); // Redirect back to client home
+            ClientHomeScreen.display(userId); // Redirect back to client home
         } else {
             ParkingListScreen.display(bookings, this, "Select Booking: ");
         }

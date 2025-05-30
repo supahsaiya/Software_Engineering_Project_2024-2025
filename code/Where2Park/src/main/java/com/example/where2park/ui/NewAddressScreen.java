@@ -1,6 +1,5 @@
 package com.example.where2park.ui;
 
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,9 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import com.example.where2park.service.ManageLocationClass;
-import com.example.where2park.service.GPSApi;
-import com.example.where2park.model.Location;
+import com.example.where2park.controller.ManageLocationClass;
 
 public class NewAddressScreen {
 

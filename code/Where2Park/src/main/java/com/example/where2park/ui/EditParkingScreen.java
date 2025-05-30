@@ -1,7 +1,7 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageInfoClass;
-import com.example.where2park.model.Parking;
+import com.example.where2park.model.ParkingLot;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class EditParkingScreen {
 
     public static void display() {
-        Parking data = ManageInfoClass.searchInfo();
+        ParkingLot data = ManageInfoClass.searchInfo();
         if (data == null) {
             redoMessage("Αποτυχία φόρτωσης των πληροφοριών.");
             return;
@@ -47,7 +47,7 @@ public class EditParkingScreen {
         window.show();
     }
 
-    public static TextField[] selectEditArea(Parking data) {
+    public static TextField[] selectEditArea(ParkingLot data) {
         TextField nameField = new TextField(data.getName());
         TextField addressField = new TextField(data.getAddress());
         TextField telField = new TextField(data.getTel());
@@ -67,13 +67,13 @@ public class EditParkingScreen {
                 return;
             }
 
-            Parking existing = ManageInfoClass.searchInfo();
+            ParkingLot existing = ManageInfoClass.searchInfo();
             if (existing == null) {
                 redoMessage("Αποτυχία φόρτωσης των τρεχουσών πληροφοριών.");
                 return;
             }
 
-            Parking updated = new Parking(
+            ParkingLot updated = new ParkingLot(
                     nameField.getText(),
                     existing.getLat(),
                     existing.getLon(),

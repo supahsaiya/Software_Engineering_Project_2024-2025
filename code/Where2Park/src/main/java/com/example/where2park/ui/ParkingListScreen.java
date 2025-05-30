@@ -1,6 +1,6 @@
 package com.example.where2park.ui;
 
-import com.example.where2park.controller.ManageUserBookingClass;
+import com.example.where2park.controller.ManageClientBookingsClass;
 import com.example.where2park.model.Booking;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ParkingListScreen {
 
-    public static void display(List<Booking> bookings, ManageUserBookingClass controller, String message) {
+    public static void display(List<Booking> bookings, ManageClientBookingsClass controller, String message) {
         Stage stage = new Stage();
         VBox root = new VBox(10);
         root.setStyle("-fx-padding: 20");
@@ -33,7 +33,7 @@ public class ParkingListScreen {
         stage.show();
     }
 
-    private static void selectParkingSpot(Stage stage, ManageUserBookingClass controller, Booking spot) {
+    private static void selectParkingSpot(Stage stage, ManageClientBookingsClass controller, Booking spot) {
         stage.close();
         controller.onSelectBooking(spot.getSpot(), spot.getDate());
     }

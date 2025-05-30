@@ -8,7 +8,7 @@ import com.example.where2park.ui.ReviewConfirmScreen;
 public class ManageReviewClass {
     private int userId;
     private Booking booking;
-    private Parking parking;
+    private ParkingLot parking;
 
     public ManageReviewClass(int userId, String spot, String date) {
         this.userId = userId;
@@ -22,13 +22,13 @@ public class ManageReviewClass {
     }
 
     // Called after user submits review
-    public static void reviewValidated(Parking parking, Booking booking, int userId, int stars, String reviewText) {
+    public static void reviewValidated(ParkingLot parking, Booking booking, int userId, int stars, String reviewText) {
         ReviewConfirmScreen.display(parking, booking, userId, stars, reviewText);
     }
 
 
     // Called after confirm
-    public void confirmationDone(Parking parking, Booking booking, int stars, String reviewText) {
+    public void confirmationDone(ParkingLot parking, Booking booking, int stars, String reviewText) {
         Review review = new Review(parking.getName(), userId, booking.getDate(), stars, reviewText);
         boolean success = review.updateReviewList();
 

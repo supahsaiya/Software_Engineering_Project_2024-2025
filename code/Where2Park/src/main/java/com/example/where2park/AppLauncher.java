@@ -1,11 +1,9 @@
 package com.example.where2park;
 
-import com.example.where2park.service.ManageLocationClass;
+import com.example.where2park.controller.ManageLocationClass;
 import com.example.where2park.model.Location;
-import com.example.where2park.service.DatabaseManager;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 
 //USECASE 1 TEST

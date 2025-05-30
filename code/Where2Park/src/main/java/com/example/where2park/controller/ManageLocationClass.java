@@ -1,10 +1,11 @@
-package com.example.where2park.service;
+package com.example.where2park.controller;
 
+import com.example.where2park.service.DatabaseManager;
 import com.example.where2park.service.GPSApi;
 import com.example.where2park.model.Location;
 import com.example.where2park.ui.ConfirmLocationScreen;
 import com.example.where2park.ui.NewAddressScreen;
-import com.example.where2park.ui.UserHomeScreen;
+import com.example.where2park.ui.ClientHomeScreen;
 import com.example.where2park.ui.UserWelcomeScreen;
 import javafx.application.Platform;
 
@@ -14,7 +15,7 @@ public class ManageLocationClass {
 
     private GPSApi gpsApi;
     private DatabaseManager dbManager = new DatabaseManager();
-    private UserHomeScreen userHomeScreen = new UserHomeScreen();
+    private ClientHomeScreen userHomeScreen = new ClientHomeScreen();
     private Location confirmedLocation;
 
     public static ManageLocationClass instance; // <- ADD THIS

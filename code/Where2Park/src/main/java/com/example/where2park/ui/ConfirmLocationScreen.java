@@ -1,7 +1,7 @@
 package com.example.where2park.ui;
 
 import com.example.where2park.model.Location;
-import com.example.where2park.service.ManageLocationClass;
+import com.example.where2park.controller.ManageLocationClass;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
