@@ -1,42 +1,72 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
-        
-  
-  
-  <user>
-                
-    
-    
-    <id>1</id>
-                
-    
-    
-    <name>Alice</name>
-                
-    
-    
-    <location status="pending">
-                        
-      
-      
-      <lat>37.9755158</lat>
-                        
-      
-      
-      <lon>23.7349503</lon>
-                        
-      
-      
-      <address>syntagma 2 athens</address>
-                      
-    
-    
-    </location>
               
   
   
-  </user>
+  
+  
+  
+  <user>
+                            
+    
+    
+    
+    
+    
+    <id>1</id>
+                            
+    
+    
+    
+    
+    
+    <name>Alice</name>
+                            
+    
+    
+    
+    
+    
+    <location status="pending">
+                                          
       
+      
+      
+      
+      
+      <lat>37.9755158</lat>
+                                          
+      
+      
+      
+      
+      
+      <lon>23.7349503</lon>
+                                          
+      
+      
+      
+      
+      
+      <address>syntagma 3 athens</address>
+                                        
+    
+    
+    
+    
+    
+    </location>
+                          
+  
+  
+  
+  
+  
+  </user>
+            
+
+
+
 
 
 </users>

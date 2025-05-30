@@ -557,6 +557,37 @@ public class DataStorageManager {
             this.distance = dist;
         }
     }
+    public List<ParkingLot> getAllParkingLots() {
+        List<ParkingLot> lots = new ArrayList<>();
+
+        try {
+            File file = new File("src/main/data/parking.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+
+            NodeList nodes = doc.getElementsByTagName("parking");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Element e = (Element) nodes.item(i);
+
+                String name = e.getElementsByTagName("name").item(0).getTextContent();
+                double lat = Double.parseDouble(e.getElementsByTagName("lat").item(0).getTextContent());
+                double lon = Double.parseDouble(e.getElementsByTagName("lon").item(0).getTextContent());
+                String address = e.getElementsByTagName("address").item(0).getTextContent();
+                String tel = e.getElementsByTagName("tel").item(0).getTextContent();
+                int total = Integer.parseInt(e.getElementsByTagName("capacity").item(0).getTextContent());
+                int available = Integer.parseInt(e.getElementsByTagName("available").item(0).getTextContent());
+
+                lots.add(new ParkingLot(name, lat, lon, address, tel, total, available));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return lots;
+    }
+
 
     //NOT IN USE ANYMORE
     public static class ParkingSpot {

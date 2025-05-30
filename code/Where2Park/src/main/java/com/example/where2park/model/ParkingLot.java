@@ -20,37 +20,7 @@ public class ParkingLot {
         this.currentlyAvailable = currentlyAvailable;
     }
 
-    /*
-    public static int fetchCurrentAvailability(String parkingName) {
-        try {
-            File file = new File("src/main/data/parkings.xml");
-            if (!file.exists()) return -1;
 
-            Document doc = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(file);
-            NodeList parkings = doc.getElementsByTagName("parking");
-
-            for (int i = 0; i < parkings.getLength(); i++) {
-                Element el = (Element) parkings.item(i);
-                String name = el.getElementsByTagName("name").item(0).getTextContent();
-                if (name.equalsIgnoreCase(parkingName)) {
-                    String availableStr = el.getElementsByTagName("currentlyAvailable").item(0).getTextContent();
-                    return Integer.parseInt(availableStr);
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return -1; // Error or not found
-    }
-    */
-    /*
-    public int updateTemporarySpotsList(int newAvailable) {
-        this.setCurrentlyAvailable(newAvailable);
-        return newAvailable;
-    }
-    */
 
     public String getName() { return name; }
     public double getLat() { return lat; }
@@ -71,58 +41,5 @@ public class ParkingLot {
     }
 
 
-     /*
 
-    //HELPER CLASSES
-
-    public static Parking loadFromXML(String parkingName) {
-        try {
-            File file = new File("src/main/data/parking.xml");
-            if (!file.exists()) return null;
-
-            Document doc = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(file);
-            NodeList parkings = doc.getElementsByTagName("parking");
-
-            for (int i = 0; i < parkings.getLength(); i++) {
-                Element el = (Element) parkings.item(i);
-                String name = el.getElementsByTagName("name").item(0).getTextContent();
-                if (name.equalsIgnoreCase(parkingName)) {
-                    double lat = Double.parseDouble(el.getElementsByTagName("lat").item(0).getTextContent());
-                    double lon = Double.parseDouble(el.getElementsByTagName("lon").item(0).getTextContent());
-                    String address = el.getElementsByTagName("address").item(0).getTextContent();
-                    String tel = el.getElementsByTagName("tel").item(0).getTextContent();
-                    int totalSpots = Integer.parseInt(el.getElementsByTagName("totalSpots").item(0).getTextContent());
-                    int currentlyAvailable = Integer.parseInt(el.getElementsByTagName("currentlyAvailable").item(0).getTextContent());
-
-                    return new Parking(name, lat, lon, address, tel, totalSpots, currentlyAvailable);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null; // Not found or error
-    }
-
-    public static List<String> getAllParkingNames() {
-        List<String> parkingNames = new ArrayList<>();
-        try {
-            File file = new File("src/main/data/parking.xml");
-            if (!file.exists()) return parkingNames;
-
-            Document doc = DocumentBuilderFactory.newInstance()
-                    .newDocumentBuilder().parse(file);
-            NodeList parkings = doc.getElementsByTagName("parking");
-
-            for (int i = 0; i < parkings.getLength(); i++) {
-                Element el = (Element) parkings.item(i);
-                String name = el.getElementsByTagName("name").item(0).getTextContent();
-                parkingNames.add(name);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return parkingNames;
-    }
-*/
 }
