@@ -59,7 +59,7 @@ public class ManageLocationClass {
 
     public void processUserLocation(Location location) {
         dbManager.querySaveLocation(location);
-        List<DataStorageManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby(location);
+        List<DataStorageManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby();
         //userHomeScreen.showNearbyParkings(nearbySpots);
     }
 

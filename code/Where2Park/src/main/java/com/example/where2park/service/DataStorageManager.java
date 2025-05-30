@@ -1,5 +1,6 @@
 package com.example.where2park.service;
 
+import com.example.where2park.controller.ManageLocationClass;
 import com.example.where2park.model.Client;
 import com.example.where2park.model.Location;
 import com.example.where2park.model.Booking;
@@ -56,7 +57,59 @@ public class DataStorageManager {
         return "Δεν υπάρχουν διαθέσιμα στατιστικά για τον συνδυασμό " + category + " και " + filter;
     }
 
+    // Inside DataStorageManager
+    public Location getCurrentLocation() {
+        return ManageLocationClass.instance.getConfirmedLocation();
+    }
 
+
+    public List<ParkingSpot> queryFindNearby() {
+        Location userLocation = getCurrentLocation(); // Now internal
+        if (userLocation == null) {
+            System.out.println("No user location set. Cannot query nearby spots.");
+            return new ArrayList<>();
+        }
+
+        List<ParkingSpotDistance> spotsWithDistance = new ArrayList<>();
+        double searchRadiusKm = 2.0;
+
+        try {
+            File file = new File("src/main/data/parking.xml");
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(file);
+
+            NodeList nodes = doc.getElementsByTagName("parking");
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Element e = (Element) nodes.item(i);
+                String name = e.getElementsByTagName("name").item(0).getTextContent();
+                double lat = Double.parseDouble(e.getElementsByTagName("lat").item(0).getTextContent());
+                double lon = Double.parseDouble(e.getElementsByTagName("lon").item(0).getTextContent());
+
+                double distance = calculateDistance(userLocation.getLatitude(), userLocation.getLongitude(), lat, lon);
+
+                if (distance <= searchRadiusKm) {
+                    spotsWithDistance.add(new ParkingSpotDistance(new ParkingSpot(name, lat, lon), distance));
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // Sort and print
+        spotsWithDistance.sort((a, b) -> Double.compare(a.distance, b.distance));
+
+        List<ParkingSpot> sortedNearby = new ArrayList<>();
+        for (ParkingSpotDistance psd : spotsWithDistance) {
+            sortedNearby.add(psd.parkingSpot);
+            System.out.println(psd.parkingSpot.getName() + " - Distance: " + psd.distance + " km");
+        }
+
+        return sortedNearby;
+    }
+
+    /*
     public List<ParkingSpot> queryFindNearby(Location userLocation) {
         List<ParkingSpotDistance> spotsWithDistance = new ArrayList<>();
         double searchRadiusKm = 2.0;  // example radius
@@ -98,7 +151,7 @@ public class DataStorageManager {
 
         return sortedNearby;
     }
-
+    */
 
 
     private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
