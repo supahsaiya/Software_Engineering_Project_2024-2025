@@ -22,35 +22,25 @@ public class NewAddressScreen {
 
         Button submitButton = new Button("Submit");
 
-        /*
         submitButton.setOnAction(e -> {
             String address = addressField.getText();
-            if (address != null && !address.isEmpty()) {
-                Location location = GPSApi.geocode(address); // ✅ Convert to lat/lon
-                if (location != null) {
-                    // No need for Platform.runLater here; you're already on the JavaFX thread
-                    ManageLocationClass.instance.setConfirmedLocation(location); // ✅ Set it
-                    System.out.println("Manual location set: " + location);
-                } else {
-                    System.out.println("Failed to geocode address.");
-                }
-                window.close(); // Close the UI
-            }
+            addNewAddress(address, window);
         });
-        */
-        submitButton.setOnAction(e -> {
-            String address = addressField.getText();
-            if (address != null && !address.isEmpty()) {
-                ManageLocationClass.newLocationAdded(address); // ✅ central entry point
-                window.close(); // ✅ close UI after triggering the logic
-            }
-        });
-
-
 
         VBox layout = new VBox(10, label, addressField, submitButton);
         layout.setStyle("-fx-padding: 20;");
         window.setScene(new Scene(layout, 300, 150));
         window.showAndWait(); // Pause until window is closed
+    }
+
+    public static void addNewAddress(String address, Stage windowToClose) {
+        if (address != null && !address.trim().isEmpty()) {
+            ManageLocationClass.newLocationAdded(address); // ✅ central logic
+            if (windowToClose != null) {
+                windowToClose.close(); // ✅ Close UI window if applicable
+            }
+        } else {
+            System.out.println("Address cannot be empty.");
+        }
     }
 }
