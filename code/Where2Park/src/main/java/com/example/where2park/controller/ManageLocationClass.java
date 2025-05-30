@@ -66,6 +66,7 @@ public class ManageLocationClass {
     public Location getConfirmedLocation() {
         return confirmedLocation;
     }
+
     public void setConfirmedLocation(Location location) {
         this.confirmedLocation = location;
     }

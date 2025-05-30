@@ -22,7 +22,6 @@ public class ConfirmLocationScreen {
         return confirmedLocation;
     }
 
-
     public static void display(Location location, ManageLocationClass mgr) {
         manager = mgr;
 
@@ -43,19 +42,12 @@ public class ConfirmLocationScreen {
         // Buttons
         Button confirmBtn = new Button("Yes, Confirm");
         confirmBtn.setOnAction(e -> {
-            manager.setConfirmedLocation(location);  // OK
-            // Save confirmed location
-            window.close();
+            confirm(location, window);
         });
 
         Button rejectBtn = new Button("No, Enter Manually");
         rejectBtn.setOnAction(e -> {
-            manager.setConfirmedLocation(null);
-
-            window.close();
-            if (manager != null) {
-                manager.locationRejected();  // Callback to handle manual input
-            }
+            rejectLocation(window);
         });
 
         VBox layout = new VBox(10);
@@ -68,7 +60,24 @@ public class ConfirmLocationScreen {
         window.showAndWait();
     }
 
-    // Geocoding helper (same as before)
+    public static void confirm(Location location, Stage window) {
+        if (manager != null) {
+            manager.setConfirmedLocation(location);
+            confirmedLocation = location;
+        }
+        if (window != null) window.close();
+    }
+
+    public static void rejectLocation(Stage window) {
+        if (manager != null) {
+            manager.setConfirmedLocation(null);
+            manager.locationRejected();  // Trigger manual entry flow
+        }
+        confirmedLocation = null;
+        if (window != null) window.close();
+    }
+
+    // Geocoding helper
     private static double[] geocodeLocation(String location) {
         try {
             String encodedLocation = java.net.URLEncoder.encode(location, "UTF-8");
@@ -76,7 +85,7 @@ public class ConfirmLocationScreen {
 
             java.net.URL url = new java.net.URL(urlStr);
             java.net.HttpURLConnection conn = (java.net.HttpURLConnection) url.openConnection();
-            conn.setRequestProperty("User-Agent", "Where2ParkApp/1.0"); // required by Nominatim
+            conn.setRequestProperty("User-Agent", "Where2ParkApp/1.0");
 
             java.io.BufferedReader in = new java.io.BufferedReader(new java.io.InputStreamReader(conn.getInputStream()));
             StringBuilder response = new StringBuilder();
@@ -103,6 +112,7 @@ public class ConfirmLocationScreen {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         // Default fallback (Athens)
         return new double[]{37.9838, 23.7275};
     }
