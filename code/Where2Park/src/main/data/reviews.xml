@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <reviews>
-                  
+                    
+  
   
   
   
@@ -9,7 +10,8 @@
   
   
   <review>
-                                    
+                                        
+    
     
     
     
@@ -18,7 +20,8 @@
     
     
     <userId>1</userId>
-                                    
+                                        
+    
     
     
     
@@ -27,7 +30,8 @@
     
     
     <parkingName>Tetris Parking</parkingName>
-                                    
+                                        
+    
     
     
     
@@ -36,7 +40,8 @@
     
     
     <bookingDate>2025-05-20</bookingDate>
-                                    
+                                        
+    
     
     
     
@@ -45,7 +50,8 @@
     
     
     <stars>5</stars>
-                                    
+                                        
+    
     
     
     
@@ -54,7 +60,8 @@
     
     
     <text>excellent service!</text>
-                                  
+                                      
+  
   
   
   
@@ -63,7 +70,8 @@
   
   
   </review>
-                  
+                    
+  
   
   
   
@@ -72,7 +80,8 @@
   
   
   <review>
-                                    
+                                        
+    
     
     
     
@@ -81,7 +90,8 @@
     
     
     <userId>1</userId>
-                                    
+                                        
+    
     
     
     
@@ -90,7 +100,8 @@
     
     
     <parkingName>Tetris Parking</parkingName>
-                                    
+                                        
+    
     
     
     
@@ -99,7 +110,8 @@
     
     
     <bookingDate>2025-05-21</bookingDate>
-                                    
+                                        
+    
     
     
     
@@ -108,7 +120,8 @@
     
     
     <stars>5</stars>
-                                    
+                                        
+    
     
     
     
@@ -117,7 +130,148 @@
     
     
     <text>very nice</text>
-                                  
+                                      
+  
+  
+  
+  
+  
+  
+  
+  
+  </review>
+                    
+  
+  
+  
+  
+  
+  
+  
+  
+  <review>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <userId>1</userId>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <parkingName>Plaka Old Town Parking</parkingName>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <bookingDate>2025-05-22</bookingDate>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <stars>3</stars>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <text>ok</text>
+                                      
+  
+  
+  
+  
+  
+  
+  
+  
+  </review>
+                    
+  
+  
+  
+  
+  
+  
+  
+  
+  <review>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <parkingName>O Platanos</parkingName>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <userId>1</userId>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <bookingDate>2025-05-24</bookingDate>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <stars>5</stars>
+                                        
+    
+    
+    
+    
+    
+    
+    
+    
+    <text>nice parking spot!</text>
+                                      
+  
   
   
   
@@ -134,16 +288,8 @@
   
   
   
+  
   <review>
-                                    
-    
-    
-    
-    
-    
-    
-    
-    <userId>1</userId>
                                     
     
     
@@ -153,60 +299,6 @@
     
     
     <parkingName>Plaka Old Town Parking</parkingName>
-                                    
-    
-    
-    
-    
-    
-    
-    
-    <bookingDate>2025-05-22</bookingDate>
-                                    
-    
-    
-    
-    
-    
-    
-    
-    <stars>3</stars>
-                                    
-    
-    
-    
-    
-    
-    
-    
-    <text>ok</text>
-                                  
-  
-  
-  
-  
-  
-  
-  
-  </review>
-                  
-  
-  
-  
-  
-  
-  
-  
-  <review>
-                                    
-    
-    
-    
-    
-    
-    
-    
-    <parkingName>O Platanos</parkingName>
                                     
     
     
@@ -233,7 +325,7 @@
     
     
     
-    <stars>5</stars>
+    <stars>4</stars>
                                     
     
     
@@ -242,7 +334,7 @@
     
     
     
-    <text>nice parking spot!</text>
+    <text>ok service</text>
                                   
   
   
@@ -284,7 +376,7 @@
     
     
     
-    <bookingDate>2025-05-24</bookingDate>
+    <bookingDate>2025-05-27</bookingDate>
                                 
     
     
@@ -292,7 +384,7 @@
     
     
     
-    <stars>4</stars>
+    <stars>5</stars>
                                 
     
     
@@ -300,7 +392,7 @@
     
     
     
-    <text>ok service</text>
+    <text>incredible would park here again</text>
                               
   
   
@@ -323,7 +415,7 @@
     
     
     
-    <parkingName>Plaka Old Town Parking</parkingName>
+    <parkingName>O Platanos</parkingName>
                             
     
     
@@ -337,7 +429,7 @@
     
     
     
-    <bookingDate>2025-05-27</bookingDate>
+    <bookingDate>2025-05-28</bookingDate>
                             
     
     
@@ -351,7 +443,7 @@
     
     
     
-    <text>incredible would park here again</text>
+    <text>good service</text>
                           
   
   
@@ -383,19 +475,19 @@
     
     
     
-    <bookingDate>2025-05-28</bookingDate>
+    <bookingDate>2025-05-26</bookingDate>
                         
     
     
     
     
-    <stars>5</stars>
+    <stars>4</stars>
                         
     
     
     
     
-    <text>good service</text>
+    <text>good</text>
                       
   
   
@@ -422,17 +514,17 @@
     
     
     
-    <bookingDate>2025-05-26</bookingDate>
+    <bookingDate>2025-05-27</bookingDate>
                     
     
     
     
-    <stars>4</stars>
+    <stars>5</stars>
                     
     
     
     
-    <text>good</text>
+    <text>very nice</text>
                   
   
   
@@ -446,7 +538,7 @@
                 
     
     
-    <parkingName>O Platanos</parkingName>
+    <parkingName>Plaka Old Town Parking</parkingName>
                 
     
     
@@ -454,15 +546,15 @@
                 
     
     
-    <bookingDate>2025-05-27</bookingDate>
+    <bookingDate>2025-05-26</bookingDate>
                 
     
     
-    <stars>5</stars>
+    <stars>3</stars>
                 
     
     
-    <text>very nice</text>
+    <text>good</text>
               
   
   
@@ -473,19 +565,19 @@
   <review>
             
     
-    <parkingName>Plaka Old Town Parking</parkingName>
+    <parkingName>O Platanos</parkingName>
             
     
     <userId>1</userId>
             
     
-    <bookingDate>2025-05-26</bookingDate>
+    <bookingDate>2025-05-22</bookingDate>
             
     
-    <stars>3</stars>
+    <stars>5</stars>
             
     
-    <text>good</text>
+    <text>i love this parking</text>
           
   
   </review>
@@ -493,23 +585,23 @@
   
   <review>
         
-    <parkingName>O Platanos</parkingName>
+    <parkingName>Tetris Parking</parkingName>
         
     <userId>1</userId>
         
-    <bookingDate>2025-05-22</bookingDate>
+    <bookingDate>2025-05-18</bookingDate>
         
-    <stars>5</stars>
+    <stars>4</stars>
         
-    <text>i love this parking</text>
+    <text>ok</text>
       
   </review>
   
   <review>
-    <parkingName>Tetris Parking</parkingName>
+    <parkingName>Plaka Old Town Parking</parkingName>
     <userId>1</userId>
-    <bookingDate>2025-05-18</bookingDate>
-    <stars>4</stars>
+    <bookingDate>2025-05-28</bookingDate>
+    <stars>3</stars>
     <text>ok</text>
   </review>
 </reviews>

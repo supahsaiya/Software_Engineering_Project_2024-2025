@@ -1,11 +1,9 @@
 package com.example.where2park.ui;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 
-
-public class UserWelcomeScreen {
+public class ClientWelcomeScreen {
 
     public static void showEnableLocationMessage() {
         Platform.runLater(() -> {

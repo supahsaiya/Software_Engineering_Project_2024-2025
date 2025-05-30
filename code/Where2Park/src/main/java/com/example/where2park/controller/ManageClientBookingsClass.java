@@ -1,12 +1,11 @@
 
 package com.example.where2park.controller;
 
-import com.example.where2park.model.Location;
 import com.example.where2park.model.Booking;
 import com.example.where2park.ui.ParkingListScreen;
 import com.example.where2park.ui.ClientHomeScreen;
-import com.example.where2park.service.DatabaseManager;
-import com.example.where2park.controller.ManageReviewClass;
+import com.example.where2park.service.DataStorageManager;
+
 import java.util.List;
 
 public class ManageClientBookingsClass {
@@ -17,7 +16,7 @@ public class ManageClientBookingsClass {
     }
 
     public void start() {
-        List<Booking> bookings = DatabaseManager.queryClientBooking(userId);
+        List<Booking> bookings = DataStorageManager.queryClientBooking(userId);
 
         if (bookings.isEmpty()) {
             ParkingListScreen.showNoBookings();

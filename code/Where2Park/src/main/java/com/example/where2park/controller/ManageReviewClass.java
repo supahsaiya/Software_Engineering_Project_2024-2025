@@ -1,7 +1,7 @@
 package com.example.where2park.controller;
 
 import com.example.where2park.model.*;
-import com.example.where2park.service.DatabaseManager;
+import com.example.where2park.service.DataStorageManager;
 import com.example.where2park.ui.ParkingReviewForm;
 import com.example.where2park.ui.ReviewConfirmScreen;
 
@@ -13,7 +13,7 @@ public class ManageReviewClass {
     public ManageReviewClass(int userId, String spot, String date) {
         this.userId = userId;
         this.booking = new Booking(spot, date);
-        this.parking = DatabaseManager.getParkingByName(spot);
+        this.parking = DataStorageManager.getParkingByName(spot);
     }
 
     // Start the review process
@@ -33,7 +33,7 @@ public class ManageReviewClass {
         boolean success = review.updateReviewList();
 
         if (success) {
-            Client client = DatabaseManager.getClientById(userId);
+            Client client = DataStorageManager.getClientById(userId);
             if (client != null) {
                 ManageEmailClass.sendEmailTo(client.getName()); // Simulated email
                 System.out.println(" Review confirmed and email sent to client: " + client.getName());

@@ -1,7 +1,7 @@
 package com.example.where2park.controller;
 
 import com.example.where2park.model.ParkingLot;
-import com.example.where2park.service.DatabaseManager;
+import com.example.where2park.service.DataStorageManager;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -19,13 +19,13 @@ public class ManageInfoClass {
             doc.getDocumentElement().normalize();
 
             return new ParkingLot(
-                    DatabaseManager.querySearch(doc, "name"),
-                    Double.parseDouble(DatabaseManager.querySearch(doc, "lat")),
-                    Double.parseDouble(DatabaseManager.querySearch(doc, "lon")),
-                    DatabaseManager.querySearch(doc, "address"),
-                    DatabaseManager.querySearch(doc, "tel"),
-                    Integer.parseInt(DatabaseManager.querySearch(doc, "totalSpots")),
-                    Integer.parseInt(DatabaseManager.querySearch(doc, "currentlyAvailable"))
+                    DataStorageManager.querySearch(doc, "name"),
+                    Double.parseDouble(DataStorageManager.querySearch(doc, "lat")),
+                    Double.parseDouble(DataStorageManager.querySearch(doc, "lon")),
+                    DataStorageManager.querySearch(doc, "address"),
+                    DataStorageManager.querySearch(doc, "tel"),
+                    Integer.parseInt(DataStorageManager.querySearch(doc, "totalSpots")),
+                    Integer.parseInt(DataStorageManager.querySearch(doc, "currentlyAvailable"))
             );
         } catch (Exception e) {
             errorFound("Σφάλμα κατά τη φόρτωση των πληροφοριών: " + e.getMessage());
@@ -39,10 +39,10 @@ public class ManageInfoClass {
         try {
             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new File(FILE_PATH));
 
-            DatabaseManager.queryUpdate(doc, "name", data.getName());
-            DatabaseManager.queryUpdate(doc, "address", data.getAddress());
-            DatabaseManager.queryUpdate(doc, "tel", data.getTel());
-            DatabaseManager.queryUpdate(doc, "totalSpots", String.valueOf(data.getTotalSpots()));
+            DataStorageManager.queryUpdate(doc, "name", data.getName());
+            DataStorageManager.queryUpdate(doc, "address", data.getAddress());
+            DataStorageManager.queryUpdate(doc, "tel", data.getTel());
+            DataStorageManager.queryUpdate(doc, "totalSpots", String.valueOf(data.getTotalSpots()));
 
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             transformer.transform(new DOMSource(doc), new StreamResult(new File(FILE_PATH)));

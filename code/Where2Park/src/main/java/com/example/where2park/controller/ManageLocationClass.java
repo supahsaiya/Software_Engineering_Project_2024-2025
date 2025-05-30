@@ -1,12 +1,12 @@
 package com.example.where2park.controller;
 
-import com.example.where2park.service.DatabaseManager;
+import com.example.where2park.service.DataStorageManager;
 import com.example.where2park.service.GPSApi;
 import com.example.where2park.model.Location;
 import com.example.where2park.ui.ConfirmLocationScreen;
 import com.example.where2park.ui.NewAddressScreen;
 import com.example.where2park.ui.ClientHomeScreen;
-import com.example.where2park.ui.UserWelcomeScreen;
+import com.example.where2park.ui.ClientWelcomeScreen;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 public class ManageLocationClass {
 
     private GPSApi gpsApi;
-    private DatabaseManager dbManager = new DatabaseManager();
+    private DataStorageManager dbManager = new DataStorageManager();
     private ClientHomeScreen userHomeScreen = new ClientHomeScreen();
     private Location confirmedLocation;
 
@@ -34,7 +34,7 @@ public class ManageLocationClass {
         // Simulate 5% chance of location services being disabled
         if (Math.random() < 0.05) {
             System.out.println("📴 Location services are OFF.");
-            UserWelcomeScreen.showEnableLocationMessage(); // Show user message
+            ClientWelcomeScreen.showEnableLocationMessage(); // Show user message
             return null;
         }
 
@@ -59,7 +59,7 @@ public class ManageLocationClass {
 
     public void processUserLocation(Location location) {
         dbManager.querySaveLocation(location);
-        List<DatabaseManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby(location);
+        List<DataStorageManager.ParkingSpot> nearbySpots = dbManager.queryFindNearby(location);
         //userHomeScreen.showNearbyParkings(nearbySpots);
     }
 

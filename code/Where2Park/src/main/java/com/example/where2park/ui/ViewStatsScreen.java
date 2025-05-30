@@ -2,7 +2,7 @@ package com.example.where2park.ui;
 
 import com.example.where2park.controller.ManageDisplayStatisticsClass;
 import com.example.where2park.model.ParkingLot;
-import com.example.where2park.service.DatabaseManager;
+import com.example.where2park.service.DataStorageManager;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -38,7 +38,7 @@ public class ViewStatsScreen {
     }
 
     public static void showStatisticalCategories(ComboBox<ParkingLot> parkingBox, ComboBox<String> categoryBox, ComboBox<String> filterBox) {
-        List<ParkingLot> parkings = DatabaseManager.loadParkings(); // Assumes XML loading
+        List<ParkingLot> parkings = DataStorageManager.loadParkings(); // Assumes XML loading
         parkingBox.setItems(FXCollections.observableArrayList(parkings));
         parkingBox.setPromptText("Επιλέξτε πάρκινγκ");
 
@@ -54,7 +54,7 @@ public class ViewStatsScreen {
             }
         });
 
-        categoryBox.getItems().addAll(DatabaseManager.queryStatisticalCategories());
+        categoryBox.getItems().addAll(DataStorageManager.queryStatisticalCategories());
         filterBox.getItems().addAll("Ημέρα", "Ώρα", "Μήνας");
     }
 
@@ -68,7 +68,7 @@ public class ViewStatsScreen {
             return;
         }
 
-        String result = DatabaseManager.queryStatistics(category, filter);
+        String result = DataStorageManager.queryStatistics(category, filter);
         if (result == null) {
             showErrorMessage("Δεν υπάρχουν διαθέσιμα δεδομένα για την επιλογή σας.");
             return;
