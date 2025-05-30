@@ -2,6 +2,7 @@ package com.example.where2park.controller;
 
 public class ManageAvailabilityClass {
 
+
     public void validationSuccessful() {
         System.out.println("[Validation] Availability update is valid.");
     }
